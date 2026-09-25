@@ -3,7 +3,7 @@
   'use strict';
   var F = window.Flanken, Store = window.FlankenStore;
   var app = document.getElementById('app'), nav = document.getElementById('nav');
-  var state = Store.load();
+  var state = null;           // wird nach Store.ready() geladen
   var draft = null;          // Setup-Formular
   var ui = { group: 0, selectedThrower: null, minThrows: 5 };
 
@@ -61,20 +61,25 @@
 
   /* ---------- Navigation ---------- */
   function renderNav(route) {
-    if (!state) { nav.innerHTML = ''; return; }
-    var hasGroups = state.tournament.groups.length > 0;
-    var links = [['', 'Übersicht']];
-    if (hasGroups) links.push(['groups', 'Gruppen']);
-    links.push(['ko', hasGroups ? 'K.o.' : 'Spiele'], ['stats', 'Statistik']);
+    var links = [];
+    if (state) {
+      var hasGroups = state.tournament.groups.length > 0;
+      links.push(['', 'Übersicht']);
+      if (hasGroups) links.push(['groups', 'Gruppen']);
+      links.push(['ko', hasGroups ? 'K.o.' : 'Spiele'], ['stats', 'Statistik']);
+    } else links.push(['setup', 'Neu']);
+    links.push(['history', 'Turniere']);
     nav.innerHTML = links.map(function (l) {
       return '<a href="#/' + l[0] + '" class="' + (route === l[0] ? 'active' : '') + '">' + l[1] + '</a>';
     }).join('') +
       '<details class="menu"><summary aria-label="Menü">⋯</summary><div>' +
-      '<button data-action="export">JSON exportieren</button>' +
+      '<button data-action="go" data-to="#/career">Gesamtstatistik</button>' +
+      (state ? '<button data-action="export">JSON exportieren</button>' : '') +
       '<button data-action="import">JSON importieren</button>' +
-      '<button data-action="print">Drucken / PDF</button>' +
-      '<button data-action="export-players">Spielerstatistik (CSV)</button>' +
-      '<button data-action="new" class="danger">Neues Turnier</button>' +
+      (state && !Store.isNative ? '<button data-action="print">Drucken / PDF</button>' : '') +
+      (state ? '' +
+        '<button data-action="export-players">Spielerstatistik (CSV)</button>' +
+        '<button data-action="new">Neues Turnier</button>' : '') +
       '</div></details>';
   }
 
@@ -432,27 +437,83 @@
     return penKeys(forPlayers).map(function (k) { return '<td>' + (c[k] || '') + '</td>'; }).join('');
   }
 
-  function exportPlayersCsv() {
-    var rows = [['Spieler', 'Team', 'Würfe', 'Treffer', 'Quote', 'Spiele', 'Siege', 'Niederlagen', 'Aussetzen', 'Strafhalben']];
-    F.playerRanking(state, ui.minThrows).forEach(function (s) {
-      rows.push([s.name, team(s.teamId).name, s.throwsTotal, s.hitsTotal, (s.hitQuote * 100).toFixed(1).replace('.', ','), s.matchesPlayed, s.wins, s.losses, s.penalties.skip_player, s.penalties.strafhalbe]);
-    });
+  function downloadCsv(name, rows) {
     var csv = '﻿' + rows.map(function (r) {
       return r.map(function (c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(';');
     }).join('\r\n');
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
-    a.download = 'flankenscore_spieler.csv';
-    document.body.appendChild(a); a.click();
-    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+    Store.download(name, new Blob([csv], { type: 'text/csv;charset=utf-8' }));
   }
+  function csvPct(q) { return (q * 100).toFixed(1).replace('.', ','); }
+
+  function exportPlayersCsv() {
+    var rows = [['Spieler', 'Team', 'Würfe', 'Treffer', 'Quote', 'Spiele', 'Siege', 'Niederlagen', 'Aussetzen', 'Strafhalben']];
+    F.playerRanking(state, ui.minThrows).forEach(function (s) {
+      rows.push([s.name, team(s.teamId).name, s.throwsTotal, s.hitsTotal, csvPct(s.hitQuote), s.matchesPlayed, s.wins, s.losses, s.penalties.skip_player, s.penalties.strafhalbe]);
+    });
+    downloadCsv('flankenscore_spieler.csv', rows);
+  }
+
+  function exportCareerCsv() {
+    var rows = [['Spieler', 'Teams', 'Turniere', 'Titel', 'Podest', 'Würfe', 'Treffer', 'Quote', 'Spiele', 'Siege', 'Niederlagen', 'Aussetzen', 'Strafhalben']];
+    F.careerStats(Store.list(), ui.minThrows).players.forEach(function (s) {
+      rows.push([s.name, s.teamNames.join(', '), s.tournaments, s.titles, s.podiums, s.throwsTotal, s.hitsTotal, csvPct(s.hitQuote),
+        s.matchesPlayed, s.wins, s.losses, s.penalties.skip_player, s.penalties.strafhalbe]);
+    });
+    downloadCsv('flankenscore_gesamtstatistik.csv', rows);
+  }
+
+  /* ---------- Turnier-Verlauf ---------- */
+  function viewHistory() {
+    var all = Store.list();
+    var html = '<section class="card"><h1>Turniere <small>(' + all.length + ')</small></h1>' +
+      '<div class="actions"><button class="primary" data-action="new">+ Neues Turnier</button>' +
+      '<button class="secondary" data-action="go" data-to="#/career">Gesamtstatistik</button>' +
+      '<button class="secondary" data-action="import">Turnier importieren</button></div>';
+    if (!all.length) return html + '<p class="muted">Noch keine Turniere gespeichert.</p></section>';
+    return html + '<ul class="history-list">' + all.map(function (st) {
+      var t = st.tournament, active = state && state.tournament.id === t.id;
+      var champ = F.podium(st).find(function (p) { return p.place === 1; });
+      var status = t.status === 'completed' ? '<span class="badge done">beendet</span>' : '<span class="badge live">läuft</span>';
+      return '<li class="history-item' + (active ? ' active' : '') + '"><div class="history-info"><strong>' + esc(t.name) + '</strong> ' + status +
+        (active ? ' <span class="badge">geöffnet</span>' : '') +
+        '<span class="muted small">' + esc(t.date) + ' · ' + t.teamCount + ' Teams' +
+        (champ ? ' · 🏆 ' + esc(F.teamById(st, champ.teamId).name) : '') + '</span></div>' +
+        '<div class="history-actions">' +
+        (active ? '' : '<button class="small" data-action="open-t" data-id="' + t.id + '">Öffnen</button>') +
+        '<button class="small secondary" data-action="export-t" data-id="' + t.id + '">Export</button>' +
+        '<button class="small danger" data-action="del-t" data-id="' + t.id + '">Löschen</button></div></li>';
+    }).join('') + '</ul></section>';
+  }
+
+  function viewCareer() {
+    var all = Store.list(), c = F.careerStats(all, ui.minThrows);
+    if (!all.length) return '<section class="card"><h1>Gesamtstatistik</h1><p class="muted">Noch keine Turniere gespeichert.</p></section>';
+    return '<section class="card"><h1>Spieler – alle Turniere</h1><p class="muted small">' + all.length + ' Turniere · Spieler werden über ihren Namen zusammengeführt.</p>' +
+      '<label class="inline">Mindestwürfe <input type="number" min="0" max="999" data-bind="minThrows" value="' + ui.minThrows + '"></label>' +
+      '<div class="table-wrap"><table><thead><tr><th>#</th><th>Spieler</th><th title="Turniere">Tur</th><th title="Turniersiege">🏆</th><th>Würfe</th><th>Treffer</th><th>Quote</th><th>Sp</th><th>S</th>' + penHead(true) + '</tr></thead><tbody>' +
+      c.players.map(function (s, i) {
+        var ok = s.throwsTotal >= ui.minThrows;
+        return '<tr class="' + (ok ? '' : 'dim') + '"><td>' + (ok ? i + 1 : '–') + '</td><td title="' + esc(s.teamNames.join(', ')) + '">' + esc(s.name) + '</td><td>' + s.tournaments +
+          '</td><td>' + (s.titles || '') + '</td><td>' + s.throwsTotal + '</td><td>' + s.hitsTotal + '</td><td>' + pct(s.hitQuote) + '</td><td>' + s.matchesPlayed + '</td><td>' + s.wins + '</td>' + penCells(s.penalties, true) + '</tr>';
+      }).join('') + '</tbody></table></div>' +
+      '<div class="actions"><button class="secondary" data-action="export-career">Als CSV exportieren</button></div></section>' +
+      '<section class="card"><h1>Teams – alle Turniere</h1><div class="table-wrap"><table><thead><tr><th>#</th><th>Team</th><th title="Turniere">Tur</th><th title="Turniersiege">🏆</th><th>Podest</th><th>Sp</th><th>S</th><th>N</th><th>Sieg-%</th><th>Quote</th>' + penHead() + '</tr></thead><tbody>' +
+      c.teams.map(function (s, i) {
+        return '<tr><td>' + (i + 1) + '</td><td>' + esc(s.name) + '</td><td>' + s.tournaments + '</td><td>' + (s.titles || '') + '</td><td>' + (s.podiums || '') +
+          '</td><td>' + s.matchesPlayed + '</td><td>' + s.wins + '</td><td>' + s.losses + '</td><td>' + pct(s.winQuote) + '</td><td>' + pct(s.hitQuote) + '</td>' + penCells(s.penalties) + '</tr>';
+      }).join('') + '</tbody></table></div><p class="muted small">Sortiert nach Turniersiegen, dann Spielsiegen.</p></section>';
+  }
+
+  function findStored(id) { return Store.list().find(function (st) { return st.tournament.id === id; }); }
 
   /* ---------- Router ---------- */
   function render() {
     var route = location.hash.replace(/^#\/?/, '');
-    if (!state && route !== 'setup') route = 'setup';
+    if (!state && ['setup', 'history', 'career'].indexOf(route) < 0) route = 'setup';
     var html;
     if (route === 'setup') html = viewSetup();
+    else if (route === 'history') html = viewHistory();
+    else if (route === 'career') html = viewCareer();
     else if (route === 'groups') html = viewGroups();
     else if (route === 'ko') html = viewKo();
     else if (route === 'stats') html = viewStats();
@@ -552,9 +613,25 @@
     'import': function () { document.getElementById('importFile').click(); },
     'print': function () { window.print(); },
     'export-players': exportPlayersCsv,
+    'export-career': exportCareerCsv,
+    'go': function (d) { go(d.to); },
     'new': function () {
-      if (!confirm('Neues Turnier anlegen? Das aktuelle Turnier wird gelöscht – vorher ggf. exportieren.')) return;
+      if (state && !confirm('Neues Turnier anlegen? Das aktuelle Turnier bleibt unter „Turniere“ gespeichert.')) return;
       state = null; draft = newDraft(); Store.save(null); go('#/setup');
+    },
+    'open-t': function (d) {
+      var st = findStored(d.id);
+      if (!st) return;
+      state = st; draft = null; ui.group = 0; ui.selectedThrower = null;
+      Store.save(state); go('#/');
+    },
+    'export-t': function (d) { var st = findStored(d.id); if (st) Store.exportJson(st); },
+    'del-t': function (d) {
+      var st = findStored(d.id);
+      if (!st || !confirm('Turnier „' + st.tournament.name + '“ (' + st.tournament.date + ') endgültig löschen?\n\nEs fließt dann auch nicht mehr in die Gesamtstatistik ein.')) return;
+      Store.remove(d.id);
+      if (state && state.tournament.id === d.id) state = null;
+      render();
     }
   };
 
@@ -600,8 +677,13 @@
     var file = e.target.files[0];
     e.target.value = '';
     if (!file) return;
-    if (state && !confirm('Das aktuelle Turnier wird durch die Datei ersetzt. Fortfahren?')) return;
     Store.importJson(file).then(function (data) {
+      var t = data.tournament, old = findStored(t.id);
+      if (old && (old.tournament.name !== t.name || old.tournament.date !== t.date)) {
+        // Gleiche ID, aber anderes Turnier (z.B. von Hand erstellte Datei): als neues Turnier übernehmen
+        t.id = F.uuid();
+        [].concat(data.teams, t.groups || [], t.knockoutStages || [], data.matches).forEach(function (x) { if (x.tournamentId) x.tournamentId = t.id; });
+      } else if (old && !confirm('Dieses Turnier ist schon gespeichert und wird durch die Datei ersetzt. Fortfahren?')) return;
       state = data; draft = null; Store.save(state); go('#/');
     }).catch(function (err) { alert('Import fehlgeschlagen: ' + err.message); });
   });
@@ -616,6 +698,8 @@
   });
 
   window.addEventListener('hashchange', render);
-  window.addEventListener('storage', function (e) { if (e.key === 'flankenscore_tournament') { state = Store.load(); render(); } });
-  render();
+  window.addEventListener('storage', function (e) { if (Store.isStorageKey(e.key)) { state = Store.load(); render(); } });
+  // Android-WebView: Dateiauswahl zeigt JSON-Dateien oft nicht als application/json an
+  if (Store.isNative) document.getElementById('importFile').removeAttribute('accept');
+  Store.ready().then(function () { state = Store.load(); render(); });
 })();

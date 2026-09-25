@@ -314,3 +314,20 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
   .throw-table select { max-width: 8.5rem; }
   .result-toggle { min-width: 0; padding: .3rem .55rem; }
 }
+
+/* Turnier-Verlauf */
+button.danger { color: var(--miss); }
+.history-list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; }
+.history-item { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; padding: .6rem .75rem; border: 1px solid var(--border); border-radius: 10px; }
+.history-item.active { border-color: var(--primary); }
+.history-info { flex: 1 1 14rem; min-width: 0; }
+.history-info .small { display: block; margin-top: .15rem; }
+.history-actions { display: flex; gap: .4rem; flex-wrap: wrap; }
+
+/* Android-App (Capacitor): Platz für Status- und Navigationsleiste */
+.topbar { padding-top: calc(.6rem + var(--safe-area-inset-top, env(safe-area-inset-top, 0px))); }
+body { padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 600px) {
+  .topbar { padding-top: calc(.5rem + var(--safe-area-inset-top, env(safe-area-inset-top, 0px))); }
+}
+@media print { .topbar, body { padding-top: 0; padding-bottom: 0; } }

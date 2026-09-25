@@ -323,6 +323,54 @@
     });
   }
 
+  /* ---------- Turnierübergreifend ---------- */
+  // Spieler und Teams haben pro Turnier eigene IDs – zusammengeführt wird über den Namen.
+  function nameKey(name) { return String(name || '').trim().toLowerCase(); }
+
+  function careerStats(states, minThrows) {
+    minThrows = minThrows == null ? 5 : minThrows;
+    var players = {}, teams = {};
+    function entry(map, name) {
+      var k = nameKey(name);
+      return map[k] || (map[k] = { name: String(name).trim(), tournaments: 0, titles: 0, podiums: 0, throwsTotal: 0, hitsTotal: 0,
+        matchesPlayed: 0, wins: 0, losses: 0, penalties: emptyPenaltyCounts(), teamNames: [], lastDate: '' });
+    }
+    function addCommon(e, s, st, place) {
+      e.tournaments++;
+      e.throwsTotal += s.throwsTotal; e.hitsTotal += s.hitsTotal;
+      e.matchesPlayed += s.matchesPlayed; e.wins += s.wins; e.losses += s.losses;
+      Object.keys(e.penalties).forEach(function (k) { e.penalties[k] += s.penalties[k] || 0; });
+      if (place === 1) e.titles++;
+      if (place) e.podiums++;
+      if ((st.tournament.date || '') > e.lastDate) e.lastDate = st.tournament.date || '';
+    }
+    states.forEach(function (st) {
+      var places = {};
+      podium(st).forEach(function (p) { places[p.teamId] = p.place; });
+      teamStats(st).forEach(function (s) { addCommon(entry(teams, teamById(st, s.teamId).name), s, st, places[s.teamId]); });
+      playerStats(st).forEach(function (s) {
+        var e = entry(players, s.name), tn = teamById(st, s.teamId).name;
+        addCommon(e, s, st, places[s.teamId]);
+        if (e.teamNames.indexOf(tn) < 0) e.teamNames.push(tn);
+      });
+    });
+    function finish(map) {
+      return Object.keys(map).map(function (k) {
+        var e = map[k];
+        e.hitQuote = quote(e.hitsTotal, e.throwsTotal);
+        e.winQuote = quote(e.wins, e.matchesPlayed);
+        return e;
+      }).sort(function (a, b) {
+        var qa = a.throwsTotal >= minThrows, qb = b.throwsTotal >= minThrows;
+        if (qa !== qb) return qa ? -1 : 1;
+        return (b.hitQuote - a.hitQuote) || (b.hitsTotal - a.hitsTotal) || a.name.localeCompare(b.name, 'de');
+      });
+    }
+    return { players: finish(players), teams: finish(teams).sort(function (a, b) {
+      return (b.titles - a.titles) || (b.wins - a.wins) || (b.winQuote - a.winQuote) || a.name.localeCompare(b.name, 'de');
+    }) };
+  }
+
   /* ---------- Phasen & K.o. ---------- */
   function groupMatches(state) { return state.matches.filter(function (m) { return m.groupId; }); }
   function stageMatches(state, stageId) {
@@ -675,7 +723,7 @@
     uuid: uuid, now: now, getMode: getMode, describeMode: describeMode,
     createTournament: createTournament, advance: advance,
     sideCounts: sideCounts, matchTotals: matchTotals, buildResult: buildResult,
-    groupStandings: groupStandings, teamStats: teamStats, playerStats: playerStats, playerRanking: playerRanking,
+    groupStandings: groupStandings, teamStats: teamStats, playerStats: playerStats, playerRanking: playerRanking, careerStats: careerStats,
     qualifiers: qualifiers, groupMatches: groupMatches, stageMatches: stageMatches, mainStages: mainStages,
     podium: podium, phaseLabel: phaseLabel, nextThrower: nextThrower, recordThrow: recordThrow,
     canReopen: canReopen, reopen: reopen, abortMatch: abortMatch, editThrow: editThrow, deleteThrow: deleteThrow,

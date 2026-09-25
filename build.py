@@ -1,5 +1,7 @@
 """Baut dist/flankenscore.html: eine einzelne Datei mit eingebettetem CSS, JavaScript und Assets.
 
+Zusätzlich www/index.html als Web-Verzeichnis für die Android-App (Capacitor).
+
 Aufruf: python build.py
 """
 import base64
@@ -10,6 +12,7 @@ import re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'dist', 'flankenscore.html')
+WWW = os.path.join(ROOT, 'www', 'index.html')
 
 
 def read(rel):
@@ -56,7 +59,8 @@ html = re.sub(r"""url\((["']?)(\.\./)?(assets/[^"')]+)\1\)""", lambda m: 'url("'
 if re.search(r'(href|src)="(css|js|assets)/', html):
     raise SystemExit('Fehler: Nicht alle lokalen Dateien wurden eingebettet.')
 
-os.makedirs(os.path.dirname(OUT), exist_ok=True)
-with io.open(OUT, 'w', encoding='utf-8', newline='\n') as f:
-    f.write(html)
-print('Erstellt: ' + OUT + ' (' + str(len(html.encode('utf-8')) // 1024) + ' KB)')
+for path in (OUT, WWW):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with io.open(path, 'w', encoding='utf-8', newline='\n') as f:
+        f.write(html)
+    print('Erstellt: ' + path + ' (' + str(len(html.encode('utf-8')) // 1024) + ' KB)')
