@@ -701,5 +701,5 @@
   window.addEventListener('storage', function (e) { if (Store.isStorageKey(e.key)) { state = Store.load(); render(); } });
   // Android-WebView: Dateiauswahl zeigt JSON-Dateien oft nicht als application/json an
   if (Store.isNative) document.getElementById('importFile').removeAttribute('accept');
-  Store.ready().then(function () { state = Store.load(); render(); });
+  Store.ready().then(function () { state = Store.load(); render(); window.flankenStarted = true; });
 })();

@@ -27,7 +27,10 @@
     </section>
   </main>
   <script>
+    // Nur Startfehler anzeigen: Läuft die App schon, soll ein Fehler (z.B. aus Safaris Teilen-Menü
+    // oder Browser-Erweiterungen, gemeldet als "Script error.") nicht die ganze Seite ersetzen.
     window.onerror = function (msg, src, line) {
+      if (window.flankenStarted || !src) return;
       var app = document.getElementById('app');
       if (app) app.innerHTML = '<section class="card"><h1>Fehler beim Starten</h1><p>' +
         String(msg).replace(/</g, '&lt;') + ' (Zeile ' + line + ')</p><p>Bitte diese Meldung weitergeben.</p></section>';
