@@ -50,6 +50,9 @@ def inline_js(match):
 
 
 html = read('index.html')
+# Web-App-Teile (Manifest, Service Worker) gibt es nur auf GitHub Pages, nicht in Einzeldatei und Android-App
+html = re.sub(r'\s*<script data-pwa>.*?</script>', '', html, flags=re.S)
+html = re.sub(r'\n[^\n]*data-pwa[^\n]*', '', html)
 html = re.sub(r'<link rel="stylesheet" href="([^"]+)">', inline_css, html)
 html = re.sub(r'<script src="([^"]+)"></script>', inline_js, html)
 # Assets (Logo, Icons) in HTML und eingebettetem CSS als data:-URI einbetten
