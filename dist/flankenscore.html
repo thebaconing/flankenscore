@@ -312,6 +312,12 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
 .pen-btn.pen-strafhalbe { border-color: var(--miss); }
 .pen-teams { margin-bottom: .8rem; }
 @media (max-width: 380px) { .pen-row { grid-template-columns: 1fr 1fr; } .pen-who { grid-column: 1 / -1; } }
+.throw-table td.team-short { max-width: 6rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 600px) {
+  .throw-table th, .throw-table td { padding: .35rem .3rem; }
+  .throw-table select { max-width: 8.5rem; }
+  .result-toggle { min-width: 0; padding: .3rem .55rem; }
+}
 
 </style>
 </head>
@@ -1159,7 +1165,7 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
   function penaltyBox(m) {
     function btn(type, tid, pid) {
       return '<button class="pen-btn pen-' + type + '" data-action="pen-add" data-type="' + type + '" data-id="' + m.id +
-        '" data-team="' + tid + '"' + (pid ? ' data-player="' + pid + '"' : '') + '>' + PEN_ICONS[type] + ' ' + F.PENALTY_TYPES[type] + '</button>';
+        '" data-team="' + tid + '"' + (pid ? ' data-player="' + pid + '"' : '') + '>' + PEN_ICONS[type] + ' ' + (type === 'skip_team' ? 'Aussetzen' : F.PENALTY_TYPES[type]) + '</button>';
     }
     return '<div class="penalty-box"><h2>Verwarnungen &amp; Strafen</h2><div class="grid2 pen-teams">' +
       [m.homeTeamId, m.awayTeamId].map(function (tid) {
@@ -1398,8 +1404,18 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
   }
 
   // Alle Würfe des laufenden Spiels, neueste oben; Spieler, Ergebnis und Löschen sind bearbeitbar
+  // Teamname aus mehreren Wörtern → Anfangsbuchstaben ("Die Flanken" → "DF").
+  // Einwortige Namen bleiben; sind beide Kürzel gleich, werden die vollen Namen genutzt.
+  function initials(name) {
+    var words = name.trim().split(/[\s\-_]+/).filter(Boolean);
+    return words.length > 1 ? words.map(function (w) { return w.charAt(0).toUpperCase(); }).join('') : name;
+  }
+
   function throwTable(m) {
-    var seq = m.throwSequence;
+    var seq = m.throwSequence, short = {};
+    var h = initials(team(m.homeTeamId).name), a = initials(team(m.awayTeamId).name);
+    if (h.toLowerCase() === a.toLowerCase()) { h = team(m.homeTeamId).name; a = team(m.awayTeamId).name; }
+    short[m.homeTeamId] = esc(h); short[m.awayTeamId] = esc(a);
     var html = '<section class="card"><h2>Würfe <small>(' + seq.length + ')</small></h2>';
     if (!seq.length) return html + '<p class="muted small">Noch keine Würfe.</p></section>';
     function playerSelect(e) {
@@ -1412,7 +1428,7 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
     }
     return html + '<div class="table-wrap"><table class="throw-table"><thead><tr><th>#</th><th>Spieler</th><th>Team</th><th>Ergebnis</th><th></th></tr></thead><tbody>' +
       seq.slice().reverse().map(function (e) {
-        return '<tr><td>' + e.throwNumber + '</td><td>' + playerSelect(e) + '</td><td>' + tname(e.teamId) + '</td>' +
+        return '<tr><td>' + e.throwNumber + '</td><td>' + playerSelect(e) + '</td><td class="team-short" title="' + tname(e.teamId) + '">' + short[e.teamId] + '</td>' +
           '<td><button class="small result-toggle ' + (e.isHit ? 'hit' : 'miss') + '" data-action="throw-hit" data-id="' + m.id + '" data-throw="' + e.id + '" title="Umschalten">' +
           (e.isHit ? '✓ Treffer' : '✗ Daneben') + '</button></td>' +
           '<td><button class="icon-inline" data-action="throw-del" data-id="' + m.id + '" data-throw="' + e.id + '" aria-label="Wurf löschen">✕</button></td></tr>';

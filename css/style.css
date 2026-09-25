@@ -303,3 +303,9 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
 .pen-btn.pen-strafhalbe { border-color: var(--miss); }
 .pen-teams { margin-bottom: .8rem; }
 @media (max-width: 380px) { .pen-row { grid-template-columns: 1fr 1fr; } .pen-who { grid-column: 1 / -1; } }
+.throw-table td.team-short { max-width: 6rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 600px) {
+  .throw-table th, .throw-table td { padding: .35rem .3rem; }
+  .throw-table select { max-width: 8.5rem; }
+  .result-toggle { min-width: 0; padding: .3rem .55rem; }
+}
