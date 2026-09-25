@@ -296,7 +296,7 @@
       '<div class="sides"><span class="side side-a">' + sideLabel('side_a') + ': ' +
       esc(sa.homeTeamSide === 'side_a' ? home.name : away.name) + '</span><span class="side side-b">' + sideLabel('side_b') + ': ' +
       esc(sa.homeTeamSide === 'side_b' ? home.name : away.name) + '</span>' +
-      (m.status === 'not_started' ? '<button class="small secondary" data-action="swap-sides" data-id="' + m.id + '">Seiten tauschen</button>' : '') +
+      (m.status !== 'completed' ? '<button class="small secondary" data-action="swap-sides" data-id="' + m.id + '">Seiten tauschen</button>' : '') +
       '</div></section>';
 
     if (m.status === 'not_started') return head + matchSetup(m);
@@ -338,21 +338,42 @@
           var isSel = sel && sel.playerId === pid;
           return auto ? '<span class="player ' + (isSel ? 'current' : '') + '">' + pname(pid) + warnBadge(m, pid) + banBadge(m, pid) + '</span>'
             : '<button class="player ' + (isSel ? 'current' : '') + '" data-action="pick" data-id="' + m.id + '" data-team="' + tid + '" data-player="' + pid + '">' + pname(pid) + warnBadge(m, pid) + banBadge(m, pid) + '</button>';
-        }).join('') + '</div></div>';
+        }).join('') + '</div>' +
+        '<button class="secondary small order-swap" data-action="swap-order" data-id="' + m.id + '" data-team="' + tid + '">⇄ Reihenfolge tauschen</button></div>';
     }
-    var last = m.throwSequence.slice(-6).reverse();
     return '<section class="card live"><div class="grid2 panels">' + teamPanel(m.homeTeamId) + teamPanel(m.awayTeamId) + '</div>' +
       '<div class="throw-box"><div class="next-label">Nächster Wurf: <strong>' + (sel ? tname(sel.teamId) + ' – ' + pname(sel.playerId) : '–') + '</strong></div>' +
       '<div class="throw-buttons"><button class="hit" data-action="throw" data-hit="1" data-id="' + m.id + '">✓ Treffer</button>' +
       '<button class="miss" data-action="throw" data-hit="0" data-id="' + m.id + '">✗ Daneben</button></div>' +
       '<div class="throw-tools"><label class="toggle"><input type="checkbox" data-action="auto-switch"' + (auto ? ' checked' : '') + '> Wechsel automatisch</label>' +
-      '<button class="secondary small" data-action="undo" data-id="' + m.id + '"' + (m.throwSequence.length || (m.penalties || []).length ? '' : ' disabled') + '>↶ Letzte Eingabe zurücknehmen</button></div>' +
-      (last.length ? '<ul class="throw-log">' + last.map(function (e) {
-        return '<li><span>#' + e.throwNumber + '</span> ' + pname(e.playerId) + ' <b class="' + (e.isHit ? 'hit' : 'miss') + '">' + (e.isHit ? 'Treffer' : 'daneben') + '</b></li>';
-      }).join('') + '</ul>' : '') + '</div>' + penaltyBox(m) +
+      '<button class="secondary small" data-action="undo" data-id="' + m.id + '"' + (m.throwSequence.length || (m.penalties || []).length ? '' : ' disabled') + '>↶ Letzte Eingabe zurücknehmen</button></div></div>' + penaltyBox(m) +
       '<div class="end-box"><h2>Spiel beenden – Bier leer bei:</h2><div class="segmented">' + [m.homeTeamId, m.awayTeamId].map(function (tid) {
         return '<button class="primary" data-action="finish" data-id="' + m.id + '" data-team="' + tid + '">' + tname(tid) + ' gewinnt</button>';
-      }).join('') + '</div></div></section>';
+      }).join('') + '</div>' +
+      '<button class="secondary small abort" data-action="abort" data-id="' + m.id + '">Spiel abbrechen</button></div></section>' +
+      throwTable(m);
+  }
+
+  // Alle Würfe des laufenden Spiels, neueste oben; Spieler, Ergebnis und Löschen sind bearbeitbar
+  function throwTable(m) {
+    var seq = m.throwSequence;
+    var html = '<section class="card"><h2>Würfe <small>(' + seq.length + ')</small></h2>';
+    if (!seq.length) return html + '<p class="muted small">Noch keine Würfe.</p></section>';
+    function playerSelect(e) {
+      return '<select data-action="throw-player" data-id="' + m.id + '" data-throw="' + e.id + '" aria-label="Spieler">' +
+        [m.homeTeamId, m.awayTeamId].map(function (tid) {
+          return '<optgroup label="' + tname(tid) + '">' + m.playerOrder[tid].map(function (pid) {
+            return '<option value="' + pid + '"' + (pid === e.playerId ? ' selected' : '') + '>' + pname(pid) + '</option>';
+          }).join('') + '</optgroup>';
+        }).join('') + '</select>';
+    }
+    return html + '<div class="table-wrap"><table class="throw-table"><thead><tr><th>#</th><th>Spieler</th><th>Team</th><th>Ergebnis</th><th></th></tr></thead><tbody>' +
+      seq.slice().reverse().map(function (e) {
+        return '<tr><td>' + e.throwNumber + '</td><td>' + playerSelect(e) + '</td><td>' + tname(e.teamId) + '</td>' +
+          '<td><button class="small result-toggle ' + (e.isHit ? 'hit' : 'miss') + '" data-action="throw-hit" data-id="' + m.id + '" data-throw="' + e.id + '" title="Umschalten">' +
+          (e.isHit ? '✓ Treffer' : '✗ Daneben') + '</button></td>' +
+          '<td><button class="icon-inline" data-action="throw-del" data-id="' + m.id + '" data-throw="' + e.id + '" aria-label="Wurf löschen">✕</button></td></tr>';
+      }).join('') + '</tbody></table></div><p class="muted small">Tipp auf das Ergebnis schaltet zwischen Treffer und Daneben um.</p></section>';
   }
 
   function matchSummary(m) {
@@ -449,7 +470,23 @@
       m.sideAssignment = { homeTeamSide: s.awayTeamSide, awayTeamSide: s.homeTeamSide };
       Store.save(state); render();
     },
-    'swap-order': function (d) { F.matchById(state, d.id).playerOrder[d.team].reverse(); render(); },
+    'swap-order': function (d) {
+      F.matchById(state, d.id).playerOrder[d.team].reverse();
+      ui.selectedThrower = null;
+      Store.save(state); render();
+    },
+    'throw-hit': function (d) {
+      var m = F.matchById(state, d.id), e = m.throwSequence.find(function (x) { return x.id === d.throw; });
+      F.editThrow(m, d.throw, { isHit: !e.isHit });
+      Store.save(state); render();
+    },
+    'throw-del': function (d) {
+      var m = F.matchById(state, d.id), e = m.throwSequence.find(function (x) { return x.id === d.throw; });
+      if (!confirm('Wurf #' + e.throwNumber + ' von ' + F.playerById(state, e.playerId).name + ' löschen?')) return;
+      F.deleteThrow(m, d.throw);
+      ui.selectedThrower = null;
+      Store.save(state); render();
+    },
     'starting': function (d) { F.matchById(state, d.id).startingTeamId = d.team; render(); },
     'begin': function (d) {
       var m = F.matchById(state, d.id);
@@ -480,6 +517,15 @@
     'pen-del': function (d) {
       if (!confirm('Eintrag löschen?')) return;
       F.removePenalty(F.matchById(state, d.id), d.pen);
+      Store.save(state); render();
+    },
+    'abort': function (d) {
+      var m = F.matchById(state, d.id);
+      var n = m.throwSequence.length, p = (m.penalties || []).length;
+      if (!confirm('Spiel abbrechen und auf „offen“ zurücksetzen?\n\n' + n + ' Würfe und ' + p +
+        ' Strafen/Verwarnungen dieses Spiels werden gelöscht. Seiten und Reihenfolge kannst du danach neu festlegen.')) return;
+      F.abortMatch(m);
+      ui.selectedThrower = null; ui.penType = null;
       Store.save(state); render();
     },
     'finish': function (d) {
@@ -520,6 +566,11 @@
     var el = e.target;
     if (el.dataset.action === 'auto-switch') {
       state.tournament.settings.autoSwitch = el.checked;
+      ui.selectedThrower = null;
+      Store.save(state); render();
+    } else if (el.dataset.action === 'throw-player') {
+      var m = F.matchById(state, el.dataset.id), p = F.playerById(state, el.value);
+      F.editThrow(m, el.dataset.throw, { playerId: p.id, teamId: p.teamId });
       ui.selectedThrower = null;
       Store.save(state); render();
     } else if (el.dataset.bind === 'thirdPlace') {

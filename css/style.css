@@ -218,6 +218,7 @@ b.hit { color: var(--hit); }
 b.miss { color: var(--miss); }
 .end-box { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px dashed var(--border); }
 .end-box .segmented { margin-bottom: 0; }
+.end-box .abort { margin-top: 1rem; color: var(--miss); }
 
 /* Landscape-Modus für Match-Tracking (7.4) */
 @media (orientation: landscape) and (max-height: 560px) {
@@ -276,3 +277,17 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
 .brand { display: inline-flex; align-items: center; gap: .5rem; }
 .brand-logo { height: 38px; width: auto; padding: 2px 4px; border-radius: 8px; background: #f3f5f2; }
 @media (max-width: 600px) { .brand-logo { height: 32px !important; } }
+
+/* ---------- Wurf-Tabelle ---------- */
+.team-panel .order-swap { margin-top: .6rem; }
+.throw-table td, .throw-table th { text-align: left; vertical-align: middle; }
+.throw-table td:first-child, .throw-table th:first-child { text-align: right; width: 2.5rem; color: var(--muted); }
+.throw-table select {
+  font: inherit; color: var(--text); background: var(--bg);
+  border: 1px solid var(--border); border-radius: 8px; padding: .35rem .5rem; min-height: 36px; max-width: 12rem;
+}
+.result-toggle { min-width: 7.5rem; border: 0; color: #fff; }
+.result-toggle.hit { background: var(--hit); }
+.result-toggle.miss { background: var(--miss); }
+.throw-table button.icon-inline { margin-left: 0; }
+@media print { .throw-table select { border: 0; appearance: none; } }

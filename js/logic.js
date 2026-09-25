@@ -551,6 +551,25 @@
     match.updatedAt = now();
   }
 
+  // Wurf nachträglich ändern (Spieler/Team, Treffer)
+  function editThrow(match, throwId, changes) {
+    var e = match.throwSequence.find(function (x) { return x.id === throwId; });
+    if (!e) return;
+    if (changes.playerId) { e.playerId = changes.playerId; e.teamId = changes.teamId; }
+    if (typeof changes.isHit === 'boolean') e.isHit = changes.isHit;
+    match.updatedAt = now();
+  }
+
+  // Wurf löschen; Nummern und Strafen-Zeitpunkte rücken nach
+  function deleteThrow(match, throwId) {
+    var i = match.throwSequence.findIndex(function (x) { return x.id === throwId; });
+    if (i < 0) return;
+    match.throwSequence.splice(i, 1);
+    match.throwSequence.forEach(function (e, k) { e.throwNumber = k + 1; });
+    (match.penalties || []).forEach(function (p) { if (p.beforeThrow > i) p.beforeThrow--; });
+    match.updatedAt = now();
+  }
+
   function removePenalty(match, penaltyId) {
     match.penalties = (match.penalties || []).filter(function (p) { return p.id !== penaltyId; });
     match.updatedAt = now();
@@ -590,6 +609,17 @@
     return !state.matches.some(function (m) { return ids.indexOf(m.knockoutStageId) >= 0 && m.status !== 'not_started'; });
   }
 
+  // Laufendes Spiel abbrechen: zurück auf "offen", Würfe und Strafen verwerfen.
+  // Spieler-Reihenfolge und beginnendes Team bleiben als Vorauswahl erhalten.
+  function abortMatch(match) {
+    if (match.status !== 'in_progress') return;
+    match.status = 'not_started';
+    match.throwSequence = [];
+    match.penalties = [];
+    match.result = null;
+    match.updatedAt = now();
+  }
+
   function reopen(state, match) {
     var t = state.tournament;
     var st = t.knockoutStages.find(function (s) { return s.id === match.knockoutStageId; });
@@ -615,7 +645,7 @@
     groupStandings: groupStandings, teamStats: teamStats, playerStats: playerStats, playerRanking: playerRanking,
     qualifiers: qualifiers, groupMatches: groupMatches, stageMatches: stageMatches, mainStages: mainStages,
     podium: podium, phaseLabel: phaseLabel, nextThrower: nextThrower, recordThrow: recordThrow,
-    canReopen: canReopen, reopen: reopen,
+    canReopen: canReopen, reopen: reopen, abortMatch: abortMatch, editThrow: editThrow, deleteThrow: deleteThrow,
     PENALTY_TYPES: PENALTY_TYPES, drinkBanServedAt: drinkBanServedAt, pendingDrinkBans: pendingDrinkBans, addPenalty: addPenalty, removePenalty: removePenalty, undoLast: undoLast,
     teamById: teamById, playerById: playerById, matchById: matchById, quote: quote,
     bracketOrder: bracketOrder
