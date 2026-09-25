@@ -54,7 +54,7 @@ small, .muted { color: var(--muted); }
   background: var(--primary); color: var(--primary-text);
 }
 .brand { font-weight: 800; font-size: 1.25rem; color: inherit; text-decoration: none; letter-spacing: -.02em; }
-.brand span { color: var(--accent); }
+.brand-text span { color: var(--accent); }
 #nav { display: flex; align-items: center; gap: .25rem; margin-left: auto; flex-wrap: wrap; }
 #nav > a {
   color: inherit; text-decoration: none; padding: .45rem .75rem; border-radius: 8px; font-weight: 500;
@@ -271,3 +271,8 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
 .ban-state.open { color: var(--miss); }
 .ban-state.done { color: var(--muted); font-weight: 400; }
 .ban-badge { margin-left: .2rem; font-size: .85em; }
+
+/* ---------- Logo ---------- */
+.brand { display: inline-flex; align-items: center; gap: .5rem; }
+.brand-logo { height: 38px; width: auto; padding: 2px 4px; border-radius: 8px; background: #f3f5f2; }
+@media (max-width: 600px) { .brand-logo { height: 32px; } }

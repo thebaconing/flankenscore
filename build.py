@@ -1,8 +1,10 @@
-"""Baut dist/flankenscore.html: eine einzelne Datei mit eingebettetem CSS und JavaScript.
+"""Baut dist/flankenscore.html: eine einzelne Datei mit eingebettetem CSS, JavaScript und Assets.
 
 Aufruf: python build.py
 """
+import base64
 import io
+import mimetypes
 import os
 import re
 
@@ -13,6 +15,24 @@ OUT = os.path.join(ROOT, 'dist', 'flankenscore.html')
 def read(rel):
     with io.open(os.path.join(ROOT, rel), encoding='utf-8') as f:
         return f.read()
+
+
+MIME_TYPES = {'.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+              '.webp': 'image/webp', '.gif': 'image/gif', '.ico': 'image/x-icon'}
+
+
+def data_uri(rel):
+    path = os.path.join(ROOT, rel)
+    if not os.path.isfile(path):
+        raise SystemExit('Fehler: Asset nicht gefunden: ' + rel)
+    ext = os.path.splitext(rel)[1].lower()
+    mime = MIME_TYPES.get(ext) or mimetypes.guess_type(rel)[0] or 'application/octet-stream'
+    with open(path, 'rb') as f:
+        return 'data:' + mime + ';base64,' + base64.b64encode(f.read()).decode('ascii')
+
+
+def inline_asset(match):
+    return match.group(1) + '="' + data_uri(match.group(2)) + '"'
 
 
 def inline_css(match):
@@ -29,8 +49,11 @@ def inline_js(match):
 html = read('index.html')
 html = re.sub(r'<link rel="stylesheet" href="([^"]+)">', inline_css, html)
 html = re.sub(r'<script src="([^"]+)"></script>', inline_js, html)
+# Assets (Logo, Icons) in HTML und eingebettetem CSS als data:-URI einbetten
+html = re.sub(r'(src|href)="(assets/[^"]+)"', inline_asset, html)
+html = re.sub(r"""url\((["']?)(\.\./)?(assets/[^"')]+)\1\)""", lambda m: 'url("' + data_uri(m.group(3)) + '")', html)
 
-if re.search(r'(href|src)="(css|js)/', html):
+if re.search(r'(href|src)="(css|js|assets)/', html):
     raise SystemExit('Fehler: Nicht alle lokalen Dateien wurden eingebettet.')
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)

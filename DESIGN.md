@@ -431,6 +431,29 @@ App muss komplett offline funktionieren (kein Backend nötig).
 
 ---
 
+## 10. Branding & Logo
+
+- **Logo-Datei:** `assets/flankenscore-logo.svg` (liegt neben dieser DESIGN.md, beim Setup nach `public/` bzw. `src/assets/` kopieren)
+- **Motiv:** Frankenstein wirft im Profil in geduckter Boule-Haltung ein in Zewa gewickeltes, mit Panzertape umwickeltes Wurfgeschoss (Grabkerze). Im Hintergrund steht eine 1,5-l-PET-Wasserflasche mit wenig Wasser.
+- **Einsatz:** Header der Startseite / Dashboard, nicht als Favicon gedacht. Für ein Favicon bei Bedarf einen vereinfachten Ausschnitt nutzen.
+- **Schriftzug:** "FLANKEN" in Grün, "SCORE" in Rot, fette, schwere Sans-Serif (z.B. Arial Black oder eine Google-Font wie "Archivo Black").
+
+### Farbpalette
+
+| Rolle | Hex |
+|---|---|
+| Grün (Frankenstein, Primärfarbe) | `#6f9a4a` |
+| Grün dunkel (Schrift, Schatten) | `#557a36` |
+| Rot (Akzent, Sieger, Highlights) | `#d8392f` |
+| Anthrazit (Anzug, Flächen) | `#3a3842` |
+| Tinte (Konturen, Text) | `#1c1c1c` |
+| Wasserblau (Info, Statistik) | `#6fc6dd` |
+| Papier (Hintergrund) | `#f4f2ea` |
+
+Diese Farben bitte als CSS-Variablen / Tailwind-Theme übernehmen.
+
+---
+
 **Version:** 1.0 Draft  
 **Erstellt:** 2026-09-25  
 **Status:** Ready für Claude Code

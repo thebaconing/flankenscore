@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="18 22 356 254" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flankenscore Logo" width="712" height="508">
+      <defs>
+        <clipPath id="bottle-clip">
+          <path d="M 324 124 L 336 124 L 336 132 Q 345 138 345 148 L 345 164 Q 345 170 340 173 L 340 177 Q 345 180 345 186 L 345 201 Q 345 206 340 206 L 320 206 Q 315 206 315 201 L 315 186 Q 315 180 320 177 L 320 173 Q 315 170 315 164 L 315 148 Q 315 138 324 132 Z"/>
+        </clipPath>
+      </defs>
+
+      <!-- Boden -->
+      <line x1="22" y1="266" x2="372" y2="266" stroke="#1c1c1c" stroke-width="2" opacity="0.15" stroke-linecap="round"/>
+      <!-- Bodenschatten -->
+      <ellipse cx="108" cy="263" rx="78" ry="6" fill="#1c1c1c" opacity="0.12"/>
+      <ellipse cx="330" cy="207" rx="22" ry="3" fill="#1c1c1c" opacity="0.12"/>
+
+      <!-- ============ FRANKENSTEIN ============ -->
+
+      <!-- Hinteres Bein: gestreckt, Ferse angehoben -->
+      <path d="M 104 186 L 78 218 L 54 246" fill="none" stroke="#1c1c1c" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 104 186 L 78 218 L 54 246" fill="none" stroke="#2a2930" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+      <g transform="rotate(-32 46 254)">
+        <rect x="30" y="246" width="34" height="14" rx="7" fill="#1c1c1c" stroke="#1c1c1c" stroke-width="3"/>
+      </g>
+
+      <!-- Vorderes Bein: angewinkelt, Fuß flach -->
+      <path d="M 132 190 L 166 214 L 156 246" fill="none" stroke="#1c1c1c" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 132 190 L 166 214 L 156 246" fill="none" stroke="#3a3842" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="146" y="248" width="40" height="14" rx="7" fill="#1c1c1c" stroke="#1c1c1c" stroke-width="3"/>
+      <line x1="150" y1="259" x2="184" y2="259" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Hals + Kopf, nach vorn zur Flasche geneigt -->
+      <g transform="rotate(25 185 100)"><g transform="translate(183 134) scale(1.3) translate(-183 -134)">
+        <!-- Hals mit Bolzen -->
+        <rect x="172" y="114" width="22" height="22" fill="#557a36" stroke="#1c1c1c" stroke-width="4"/>
+        <rect x="166" y="120" width="8" height="8" rx="2" fill="#b9b9b9" stroke="#1c1c1c" stroke-width="3"/>
+
+        <!-- Kopf -->
+        <path d="M 167 76 L 200 76 Q 206 76 206 83 L 206 93 L 215 103 L 206 107 L 206 112 Q 206 124 194 124 L 178 124 Q 167 124 166 112 Z"
+          fill="#6f9a4a" stroke="#1c1c1c" stroke-width="5" stroke-linejoin="round"/>
+        <!-- Schatten am Hinterkopf -->
+        <path d="M 168 90 L 168 112 Q 169 121 178 122 L 176 90 Z" fill="#557a36"/>
+
+        <!-- Flache Frisur mit Stirnfransen -->
+        <path d="M 163 90 L 163 68 Q 163 64 168 64 L 202 64 Q 207 64 207 69 L 207 80 L 202 77 L 198 83 L 194 77 L 190 83 L 186 77 L 182 81 L 172 79 L 170 92 Z"
+          fill="#1c1c1c" stroke="#1c1c1c" stroke-width="3" stroke-linejoin="round"/>
+
+        <!-- Stirnnaht -->
+        <path d="M 180 88 L 202 86" stroke="#1c1c1c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <g stroke="#1c1c1c" stroke-width="2" stroke-linecap="round">
+          <line x1="185" y1="84.5" x2="185.5" y2="90.5"/>
+          <line x1="191" y1="84" x2="191.5" y2="90"/>
+          <line x1="197" y1="83.5" x2="197.5" y2="89.5"/>
+        </g>
+
+        <!-- Ohr -->
+        <ellipse cx="177" cy="104" rx="4.5" ry="6.5" fill="#557a36" stroke="#1c1c1c" stroke-width="2.5"/>
+
+        <!-- Augenbraue, Auge -->
+        <path d="M 191 94 L 206 96" stroke="#1c1c1c" stroke-width="4.5" stroke-linecap="round"/>
+        <ellipse cx="200" cy="100.5" rx="3.2" ry="3.6" fill="#fff" stroke="#1c1c1c" stroke-width="2"/>
+        <circle cx="201.5" cy="101.5" r="1.6" fill="#1c1c1c"/>
+
+        <!-- Narbe an der Wange -->
+        <path d="M 188 108 L 192 116" stroke="#1c1c1c" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="188" y1="112" x2="192" y2="111" stroke="#1c1c1c" stroke-width="1.4" stroke-linecap="round"/>
+
+        <!-- Mund -->
+        <path d="M 197 116 L 205 115" stroke="#1c1c1c" stroke-width="3" stroke-linecap="round"/>
+      </g></g>
+
+      <!-- Jacke / Oberkörper, stark vorgebeugt -->
+      <path d="M 92 192 Q 94 146 124 116 Q 148 100 176 118 Q 178 160 146 200 Q 118 206 92 192 Z"
+        fill="#3a3842" stroke="#1c1c1c" stroke-width="5" stroke-linejoin="round"/>
+      <!-- Rückenschatten + Naht -->
+      <path d="M 98 188 Q 100 150 124 122 Q 116 150 114 196 Z" fill="#2a2930"/>
+      <path d="M 150 110 Q 158 140 150 170" fill="none" stroke="#1c1c1c" stroke-width="2" opacity="0.5"/>
+      <!-- Knöpfe und Tasche -->
+      <circle cx="162" cy="146" r="2.6" fill="#1c1c1c"/>
+      <circle cx="158" cy="164" r="2.6" fill="#1c1c1c"/>
+      <path d="M 118 170 L 136 176" stroke="#1c1c1c" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+      <!-- Hemdkragen -->
+      <path d="M 160 112 L 172 124 L 176 116" fill="#e9e6da" stroke="#1c1c1c" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- Wurfgeschoss: Grabkerze in Zewa und Panzertape -->
+      <g transform="rotate(-18 190 208)">
+        <rect x="170" y="199" width="38" height="18" rx="8" fill="#ffffff" stroke="#1c1c1c" stroke-width="3.5"/>
+        <!-- Zewa-Falten -->
+        <path d="M 176 202 Q 178 208 175 214" fill="none" stroke="#1c1c1c" stroke-width="1.2" opacity="0.4"/>
+        <path d="M 202 202 Q 200 208 203 214" fill="none" stroke="#1c1c1c" stroke-width="1.2" opacity="0.4"/>
+        <!-- Panzertape-Wicklungen -->
+        <rect x="180" y="199" width="7" height="18" fill="#8c8c8c" stroke="#1c1c1c" stroke-width="2"/>
+        <rect x="193" y="199" width="7" height="18" fill="#8c8c8c" stroke="#1c1c1c" stroke-width="2"/>
+      </g>
+
+      <!-- Wurfarm, hängt nach unten -->
+      <path d="M 156 124 Q 176 158 176 186" fill="none" stroke="#1c1c1c" stroke-width="28" stroke-linecap="round"/>
+      <path d="M 156 124 Q 176 158 176 186" fill="none" stroke="#3a3842" stroke-width="20" stroke-linecap="round"/>
+      <!-- zu kurzer Ärmel, grünes Handgelenk -->
+      <rect x="168" y="184" width="16" height="10" rx="3" fill="#557a36" stroke="#1c1c1c" stroke-width="3"/>
+      <!-- Hand um das Geschoss -->
+      <path d="M 166 198 Q 166 190 176 190 Q 188 190 188 200 Q 188 212 177 212 Q 166 212 166 204 Z"
+        fill="#6f9a4a" stroke="#1c1c1c" stroke-width="3.5"/>
+      <path d="M 176 202 L 186 201 M 175 207 L 185 207" stroke="#1c1c1c" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- ============ 1,5L PET-FLASCHE (in der Ferne) ============ -->
+      <!-- Wasser ca. 15 % -->
+      <g clip-path="url(#bottle-clip)">
+        <rect x="310" y="124" width="40" height="84" fill="#eef7fb"/>
+        <rect x="310" y="190" width="40" height="18" fill="#6fc6dd"/>
+        <line x1="310" y1="190" x2="350" y2="190" stroke="#3f9fbd" stroke-width="1.5"/>
+        <!-- Glanz -->
+        <rect x="319" y="140" width="3" height="22" rx="1.5" fill="#fff"/>
+        <rect x="319" y="182" width="3" height="6" rx="1.5" fill="#fff"/>
+      </g>
+      <!-- Kontur -->
+      <path d="M 324 124 L 336 124 L 336 132 Q 345 138 345 148 L 345 164 Q 345 170 340 173 L 340 177 Q 345 180 345 186 L 345 201 Q 345 206 340 206 L 320 206 Q 315 206 315 201 L 315 186 Q 315 180 320 177 L 320 173 Q 315 170 315 164 L 315 148 Q 315 138 324 132 Z"
+        fill="none" stroke="#1c1c1c" stroke-width="3" stroke-linejoin="round"/>
+      <!-- Griffrillen -->
+      <g stroke="#1c1c1c" stroke-width="1" opacity="0.35">
+        <line x1="318" y1="152" x2="342" y2="152"/>
+        <line x1="318" y1="158" x2="342" y2="158"/>
+        <line x1="318" y1="193" x2="342" y2="193"/>
+      </g>
+      <!-- Ring + Deckel -->
+      <rect x="322" y="120" width="16" height="4" fill="#cfd6d9" stroke="#1c1c1c" stroke-width="2"/>
+      <rect x="323" y="110" width="14" height="10" rx="2" fill="#1c1c1c" stroke="#1c1c1c" stroke-width="2"/>
+    </svg>
