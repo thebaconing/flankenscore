@@ -7,7 +7,8 @@
     "build": "python build.py",
     "android:sync": "python build.py && npx cap sync android",
     "android:open": "npx cap open android",
-    "android:apk": "python build.py && npx cap sync android && cd android && gradlew.bat assembleDebug"
+    "android:apk": "python build.py && npx cap sync android && cd android && .\\gradlew.bat assembleDebug",
+    "android:release": "python build.py && npx cap sync android && cd android && .\\gradlew.bat assembleRelease"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.2",
