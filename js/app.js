@@ -5,7 +5,7 @@
   var app = document.getElementById('app'), nav = document.getElementById('nav');
   var state = Store.load();
   var draft = null;          // Setup-Formular
-  var ui = { group: 0, selectedThrower: null, minThrows: 5, penType: null };
+  var ui = { group: 0, selectedThrower: null, minThrows: 5 };
 
   /* ---------- Helfer ---------- */
   function esc(s) {
@@ -104,29 +104,26 @@
       ? ' <span class="ban-badge" title="Darf beim nächsten Treffer nicht trinken">🚫</span>' : '';
   }
 
-  function warnBadge(m, pid) {
-    var n = (m.penalties || []).filter(function (p) { return p.type === 'warning' && p.playerId === pid; }).length;
+  function warnBadge(m, tid) {
+    var n = (m.penalties || []).filter(function (p) { return p.type === 'warning' && p.teamId === tid; }).length;
     return n ? ' <span class="warn-badge" title="Verwarnungen">⚠' + (n > 1 ? n : '') + '</span>' : '';
   }
 
+  // Ein Button pro Strafe und Ziel: Verwarnung/Teamaussetzen pro Team, Aussetzen/Strafhalbe pro Spieler
   function penaltyBox(m) {
-    var html = '<div class="penalty-box"><h2>Verwarnungen &amp; Strafen</h2><div class="segmented pen-types">' +
-      Object.keys(F.PENALTY_TYPES).map(function (k) {
-        return '<button data-action="pen-type" data-type="' + k + '" class="' + (ui.penType === k ? 'active' : '') + '">' +
-          PEN_ICONS[k] + ' ' + F.PENALTY_TYPES[k] + '</button>';
-      }).join('') + '</div>';
-    if (ui.penType) {
-      html += '<div class="pen-targets"><p class="small">' + F.PENALTY_TYPES[ui.penType] + ' für:</p><div class="grid2">' +
-        [m.homeTeamId, m.awayTeamId].map(function (tid) {
-          if (ui.penType === 'skip_team') {
-            return '<button class="secondary" data-action="pen-add" data-id="' + m.id + '" data-team="' + tid + '">' + tname(tid) + '</button>';
-          }
-          return '<div><h3>' + tname(tid) + '</h3><div class="players">' + m.playerOrder[tid].map(function (pid) {
-            return '<button class="player" data-action="pen-add" data-id="' + m.id + '" data-team="' + tid + '" data-player="' + pid + '">' + pname(pid) + '</button>';
-          }).join('') + '</div></div>';
-        }).join('') + '</div><button class="secondary small" data-action="pen-type" data-type="">Abbrechen</button></div>';
+    function btn(type, tid, pid) {
+      return '<button class="pen-btn pen-' + type + '" data-action="pen-add" data-type="' + type + '" data-id="' + m.id +
+        '" data-team="' + tid + '"' + (pid ? ' data-player="' + pid + '"' : '') + '>' + PEN_ICONS[type] + ' ' + F.PENALTY_TYPES[type] + '</button>';
     }
-    return html + penaltyList(m, true) + '</div>';
+    return '<div class="penalty-box"><h2>Verwarnungen &amp; Strafen</h2><div class="grid2 pen-teams">' +
+      [m.homeTeamId, m.awayTeamId].map(function (tid) {
+        return '<div class="pen-team"><h3>' + tname(tid) + warnBadge(m, tid) + '</h3>' +
+          '<div class="pen-row"><span class="pen-who">Team</span>' + btn('warning', tid) + btn('skip_team', tid) + '</div>' +
+          m.playerOrder[tid].map(function (pid) {
+            return '<div class="pen-row"><span class="pen-who">' + pname(pid) + banBadge(m, pid) + '</span>' +
+              btn('skip_player', tid, pid) + btn('strafhalbe', tid, pid) + '</div>';
+          }).join('') + '</div>';
+      }).join('') + '</div>' + penaltyList(m, true) + '</div>';
   }
 
   /* ---------- 6.1 Setup ---------- */
@@ -331,13 +328,13 @@
     var sel = auto ? next : (ui.selectedThrower && ui.selectedThrower.matchId === m.id ? ui.selectedThrower : next);
     function teamPanel(tid) {
       var x = tot[tid], active = sel && sel.teamId === tid;
-      return '<div class="team-panel ' + (active ? 'active' : '') + '"><h3>' + tname(tid) + '</h3>' +
+      return '<div class="team-panel ' + (active ? 'active' : '') + '"><h3>' + tname(tid) + warnBadge(m, tid) + '</h3>' +
         '<div class="counters"><div><b>' + x.throws + '</b><span>Würfe</span></div><div><b>' + x.hits + '</b><span>Treffer</span></div>' +
         '<div><b>' + pct(F.quote(x.hits, x.throws)) + '</b><span>Quote</span></div></div>' +
         '<div class="players">' + m.playerOrder[tid].map(function (pid) {
           var isSel = sel && sel.playerId === pid;
-          return auto ? '<span class="player ' + (isSel ? 'current' : '') + '">' + pname(pid) + warnBadge(m, pid) + banBadge(m, pid) + '</span>'
-            : '<button class="player ' + (isSel ? 'current' : '') + '" data-action="pick" data-id="' + m.id + '" data-team="' + tid + '" data-player="' + pid + '">' + pname(pid) + warnBadge(m, pid) + banBadge(m, pid) + '</button>';
+          return auto ? '<span class="player ' + (isSel ? 'current' : '') + '">' + pname(pid) + banBadge(m, pid) + '</span>'
+            : '<button class="player ' + (isSel ? 'current' : '') + '" data-action="pick" data-id="' + m.id + '" data-team="' + tid + '" data-player="' + pid + '">' + pname(pid) + banBadge(m, pid) + '</button>';
         }).join('') + '</div>' +
         '<button class="secondary small order-swap" data-action="swap-order" data-id="' + m.id + '" data-team="' + tid + '">⇄ Reihenfolge tauschen</button></div>';
     }
@@ -381,10 +378,10 @@
     function playerLine(pid) {
       var s = stats.find(function (x) { return x.playerId === pid; });
       var th = s.throwsByMatch[m.id] || 0, h = s.hitsByMatch[m.id] || 0;
-      return '<tr><td>' + pname(pid) + warnBadge(m, pid) + '</td><td>' + th + '</td><td>' + h + '</td><td>' + pct(F.quote(h, th)) + '</td></tr>';
+      return '<tr><td>' + pname(pid) + '</td><td>' + th + '</td><td>' + h + '</td><td>' + pct(F.quote(h, th)) + '</td></tr>';
     }
     function block(tid, hits, throws, q) {
-      return '<div class="team-panel ' + (r.winnerTeamId === tid ? 'winner' : '') + '"><h3>' + tname(tid) + (r.winnerTeamId === tid ? ' 🏆' : '') + '</h3>' +
+      return '<div class="team-panel ' + (r.winnerTeamId === tid ? 'winner' : '') + '"><h3>' + tname(tid) + warnBadge(m, tid) + (r.winnerTeamId === tid ? ' 🏆' : '') + '</h3>' +
         '<div class="counters"><div><b>' + throws + '</b><span>Würfe</span></div><div><b>' + hits + '</b><span>Treffer</span></div><div><b>' + pct(q) + '</b><span>Quote</span></div></div>' +
         '<table><thead><tr><th>Spieler</th><th>W</th><th>T</th><th>Quote</th></tr></thead><tbody>' +
         team(tid).players.map(playerLine).join('') + '</tbody></table></div>';
@@ -414,20 +411,21 @@
       }).join('') + '</tbody></table></div><p class="muted small">Sortiert nach Quote (nur Spieler mit genug Würfen), dann Treffern.</p></section>';
   }
 
-  function penKeys(noTeamSkip) {
-    return Object.keys(F.PENALTY_TYPES).filter(function (k) { return !(noTeamSkip && k === 'skip_team'); });
+  // Spieler haben nur Aussetzen und Strafhalbe; Verwarnung und Teamaussetzen gehen ans Team
+  function penKeys(forPlayers) {
+    return Object.keys(F.PENALTY_TYPES).filter(function (k) { return !(forPlayers && F.TEAM_PENALTIES[k]); });
   }
-  function penHead(noTeamSkip) {
-    return penKeys(noTeamSkip).map(function (k) { return '<th title="' + F.PENALTY_TYPES[k] + '">' + PEN_ICONS[k] + '</th>'; }).join('');
+  function penHead(forPlayers) {
+    return penKeys(forPlayers).map(function (k) { return '<th title="' + F.PENALTY_TYPES[k] + '">' + PEN_ICONS[k] + '</th>'; }).join('');
   }
-  function penCells(c, noTeamSkip) {
-    return penKeys(noTeamSkip).map(function (k) { return '<td>' + (c[k] || '') + '</td>'; }).join('');
+  function penCells(c, forPlayers) {
+    return penKeys(forPlayers).map(function (k) { return '<td>' + (c[k] || '') + '</td>'; }).join('');
   }
 
   function exportPlayersCsv() {
-    var rows = [['Spieler', 'Team', 'Würfe', 'Treffer', 'Quote', 'Spiele', 'Siege', 'Niederlagen', 'Verwarnungen', 'Aussetzen', 'Strafhalben']];
+    var rows = [['Spieler', 'Team', 'Würfe', 'Treffer', 'Quote', 'Spiele', 'Siege', 'Niederlagen', 'Aussetzen', 'Strafhalben']];
     F.playerRanking(state, ui.minThrows).forEach(function (s) {
-      rows.push([s.name, team(s.teamId).name, s.throwsTotal, s.hitsTotal, (s.hitQuote * 100).toFixed(1).replace('.', ','), s.matchesPlayed, s.wins, s.losses, s.penalties.warning, s.penalties.skip_player, s.penalties.strafhalbe]);
+      rows.push([s.name, team(s.teamId).name, s.throwsTotal, s.hitsTotal, (s.hitQuote * 100).toFixed(1).replace('.', ','), s.matchesPlayed, s.wins, s.losses, s.penalties.skip_player, s.penalties.strafhalbe]);
     });
     var csv = '﻿' + rows.map(function (r) {
       return r.map(function (c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(';');
@@ -508,10 +506,9 @@
       ui.selectedThrower = null;
       Store.save(state); render();
     },
-    'pen-type': function (d) { ui.penType = d.type && d.type !== ui.penType ? d.type : null; render(); },
     'pen-add': function (d) {
-      F.addPenalty(F.matchById(state, d.id), ui.penType, d.team, d.player);
-      ui.penType = null; ui.selectedThrower = null;
+      F.addPenalty(F.matchById(state, d.id), d.type, d.team, d.player);
+      ui.selectedThrower = null;
       Store.save(state); render();
     },
     'pen-del': function (d) {
@@ -525,7 +522,7 @@
       if (!confirm('Spiel abbrechen und auf „offen“ zurücksetzen?\n\n' + n + ' Würfe und ' + p +
         ' Strafen/Verwarnungen dieses Spiels werden gelöscht. Seiten und Reihenfolge kannst du danach neu festlegen.')) return;
       F.abortMatch(m);
-      ui.selectedThrower = null; ui.penType = null;
+      ui.selectedThrower = null;
       Store.save(state); render();
     },
     'finish': function (d) {

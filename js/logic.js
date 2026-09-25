@@ -504,6 +504,8 @@
     skip_team: 'Teamaussetzen',
     strafhalbe: 'Strafhalbe'
   };
+  // Diese Strafen gelten für das ganze Team, die übrigen für einen Spieler
+  var TEAM_PENALTIES = { warning: true, skip_team: true };
 
   // Wurfreihenfolge: Teams werfen abwechselnd, innerhalb des Teams wird rotiert (3.2)
   function nextThrower(match) {
@@ -547,7 +549,7 @@
     if (!PENALTY_TYPES[type]) throw new Error('Unbekannte Strafe: ' + type);
     if (!match.penalties) match.penalties = [];
     match.penalties.push({ id: uuid(), matchId: match.id, type: type, teamId: teamId,
-      playerId: type === 'skip_team' ? null : playerId, beforeThrow: match.throwSequence.length, timestamp: now() });
+      playerId: TEAM_PENALTIES[type] ? null : playerId, beforeThrow: match.throwSequence.length, timestamp: now() });
     match.updatedAt = now();
   }
 
@@ -646,7 +648,7 @@
     qualifiers: qualifiers, groupMatches: groupMatches, stageMatches: stageMatches, mainStages: mainStages,
     podium: podium, phaseLabel: phaseLabel, nextThrower: nextThrower, recordThrow: recordThrow,
     canReopen: canReopen, reopen: reopen, abortMatch: abortMatch, editThrow: editThrow, deleteThrow: deleteThrow,
-    PENALTY_TYPES: PENALTY_TYPES, drinkBanServedAt: drinkBanServedAt, pendingDrinkBans: pendingDrinkBans, addPenalty: addPenalty, removePenalty: removePenalty, undoLast: undoLast,
+    PENALTY_TYPES: PENALTY_TYPES, TEAM_PENALTIES: TEAM_PENALTIES, drinkBanServedAt: drinkBanServedAt, pendingDrinkBans: pendingDrinkBans, addPenalty: addPenalty, removePenalty: removePenalty, undoLast: undoLast,
     teamById: teamById, playerById: playerById, matchById: matchById, quote: quote,
     bracketOrder: bracketOrder
   };

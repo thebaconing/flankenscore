@@ -291,3 +291,15 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
 .result-toggle.miss { background: var(--miss); }
 .throw-table button.icon-inline { margin-left: 0; }
 @media print { .throw-table select { border: 0; appearance: none; } }
+
+/* Strafen-Buttons pro Team und Spieler */
+.pen-team { border: 1px solid var(--border); border-radius: 10px; padding: .7rem; }
+.pen-team h3 { margin-bottom: .6rem; }
+.pen-row { display: grid; grid-template-columns: minmax(4.5rem, 1fr) auto auto; gap: .4rem; align-items: center; margin-top: .4rem; }
+.pen-who { font-weight: 600; overflow-wrap: anywhere; }
+.pen-btn { min-height: 40px; padding: .3rem .6rem; font-size: .88rem; white-space: nowrap; background: var(--bg); }
+.pen-btn.pen-warning { border-color: var(--accent); }
+.pen-btn.pen-skip_team, .pen-btn.pen-skip_player { border-color: var(--side-a); }
+.pen-btn.pen-strafhalbe { border-color: var(--miss); }
+.pen-teams { margin-bottom: .8rem; }
+@media (max-width: 380px) { .pen-row { grid-template-columns: 1fr 1fr; } .pen-who { grid-column: 1 / -1; } }
