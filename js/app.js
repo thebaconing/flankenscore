@@ -87,7 +87,7 @@
     if (!pens.length) return '<p class="muted small">Keine Verwarnungen oder Strafen.</p>';
     return '<ul class="penalty-list">' + pens.slice().reverse().map(function (p) {
       return '<li class="pen-' + p.type + '"><span class="pen-icon">' + PEN_ICONS[p.type] + '</span><strong>' + F.PENALTY_TYPES[p.type] +
-        '</strong> ' + penaltyTarget(p) + ' <small>vor Wurf ' + (p.beforeThrow + 1) + '</small>' + drinkBanState(m, p) +
+        '</strong> ' + penaltyTarget(p) + ' <small>vor Wurf ' + (p.beforeThrow + 1) + (p.causedBy ? ' · durch Verwarnungen' : '') + '</small>' + drinkBanState(m, p) +
         (removable ? '<button class="icon-inline" data-action="pen-del" data-id="' + m.id + '" data-pen="' + p.id + '" aria-label="Eintrag löschen">✕</button>' : '') + '</li>';
     }).join('') + '</ul>';
   }
@@ -105,8 +105,8 @@
   }
 
   function warnBadge(m, tid) {
-    var n = (m.penalties || []).filter(function (p) { return p.type === 'warning' && p.teamId === tid; }).length;
-    return n ? ' <span class="warn-badge" title="Verwarnungen">⚠' + (n > 1 ? n : '') + '</span>' : '';
+    var n = F.warningAccount(m, tid);
+    return n ? ' <span class="warn-badge" title="Mahn-Konto: ' + n + ' von 8 Verwarnungen">⚠' + n + '/8</span>' : '';
   }
 
   // Ein Button pro Strafe und Ziel: Verwarnung/Teamaussetzen pro Team, Aussetzen/Strafhalbe pro Spieler

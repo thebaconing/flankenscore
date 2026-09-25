@@ -550,7 +550,27 @@
     if (!match.penalties) match.penalties = [];
     match.penalties.push({ id: uuid(), matchId: match.id, type: type, teamId: teamId,
       playerId: TEAM_PENALTIES[type] ? null : playerId, beforeThrow: match.throwSequence.length, timestamp: now() });
+    var pen = match.penalties[match.penalties.length - 1];
+    if (type === 'warning') applyWarningConsequences(match, pen);
     match.updatedAt = now();
+  }
+
+  // Mahn-Konto: 4 Verwarnungen -> Teamaussetzen, 8 Verwarnungen -> Strafhalbe für jedes
+  // Team-Mitglied, danach wird das Konto auf Null gesetzt. Folgestrafen verweisen per causedBy
+  // auf die auslösende Verwarnung und verschwinden mit ihr.
+  function warningCount(match, teamId) {
+    return (match.penalties || []).filter(function (p) { return p.type === 'warning' && p.teamId === teamId; }).length;
+  }
+  function warningAccount(match, teamId) { return warningCount(match, teamId) % 8; }
+
+  function applyWarningConsequences(match, warning) {
+    var n = warningCount(match, warning.teamId) % 8;
+    function auto(type, playerId) {
+      match.penalties.push({ id: uuid(), matchId: match.id, type: type, teamId: warning.teamId, playerId: playerId || null,
+        beforeThrow: warning.beforeThrow, timestamp: warning.timestamp, causedBy: warning.id });
+    }
+    if (n === 4) auto('skip_team');
+    else if (n === 0) (match.playerOrder && match.playerOrder[warning.teamId] || []).forEach(function (pid) { auto('strafhalbe', pid); });
   }
 
   // Wurf nachträglich ändern (Spieler/Team, Treffer)
@@ -573,7 +593,18 @@
   }
 
   function removePenalty(match, penaltyId) {
-    match.penalties = (match.penalties || []).filter(function (p) { return p.id !== penaltyId; });
+    var pen = (match.penalties || []).find(function (p) { return p.id === penaltyId; });
+    if (!pen) return;
+    if (pen.causedBy) return removePenalty(match, pen.causedBy);
+    match.penalties = match.penalties.filter(function (p) { return p.id !== penaltyId && p.causedBy !== penaltyId; });
+    // Folgestrafen späterer Verwarnungen neu berechnen, da sich der Kontostand verschiebt
+    if (pen.type === 'warning') {
+      var later = match.penalties.filter(function (p) { return p.type === 'warning' && p.teamId === pen.teamId && p.beforeThrow >= 0; });
+      var ids = {}; later.forEach(function (w) { ids[w.id] = true; });
+      match.penalties = match.penalties.filter(function (p) { return !ids[p.causedBy]; });
+      var all = match.penalties; match.penalties = [];
+      all.forEach(function (p) { match.penalties.push(p); if (ids[p.id]) applyWarningConsequences(match, p); });
+    }
     match.updatedAt = now();
   }
 
@@ -581,7 +612,7 @@
   function undoLast(match) {
     var pens = match.penalties || [], lastPen = pens[pens.length - 1];
     var lastThrow = match.throwSequence[match.throwSequence.length - 1];
-    if (lastPen && (!lastThrow || lastPen.timestamp >= lastThrow.timestamp)) pens.pop();
+    if (lastPen && (!lastThrow || lastPen.timestamp >= lastThrow.timestamp)) removePenalty(match, lastPen.id);
     else match.throwSequence.pop();
     match.updatedAt = now();
   }
@@ -648,7 +679,7 @@
     qualifiers: qualifiers, groupMatches: groupMatches, stageMatches: stageMatches, mainStages: mainStages,
     podium: podium, phaseLabel: phaseLabel, nextThrower: nextThrower, recordThrow: recordThrow,
     canReopen: canReopen, reopen: reopen, abortMatch: abortMatch, editThrow: editThrow, deleteThrow: deleteThrow,
-    PENALTY_TYPES: PENALTY_TYPES, TEAM_PENALTIES: TEAM_PENALTIES, drinkBanServedAt: drinkBanServedAt, pendingDrinkBans: pendingDrinkBans, addPenalty: addPenalty, removePenalty: removePenalty, undoLast: undoLast,
+    PENALTY_TYPES: PENALTY_TYPES, TEAM_PENALTIES: TEAM_PENALTIES, drinkBanServedAt: drinkBanServedAt, pendingDrinkBans: pendingDrinkBans, addPenalty: addPenalty, removePenalty: removePenalty, warningAccount: warningAccount, undoLast: undoLast,
     teamById: teamById, playerById: playerById, matchById: matchById, quote: quote,
     bracketOrder: bracketOrder
   };

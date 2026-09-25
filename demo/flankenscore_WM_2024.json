@@ -1,0 +1,3236 @@
+{
+  "tournament": {
+    "id": "tour-0001",
+    "name": "13. Offizielle Flankiball Weltmeisterschaft der Welt",
+    "date": "2024-09-28",
+    "mode": "groups_with_knockout",
+    "teamCount": 6,
+    "status": "completed",
+    "config": {
+      "groups": [
+        3,
+        3
+      ],
+      "legs": 2,
+      "qualifiers": 4,
+      "series": 0,
+      "thirdPlace": true
+    },
+    "settings": {
+      "autoSwitch": true
+    },
+    "groups": [
+      {
+        "id": "group-0020",
+        "tournamentId": "tour-0001",
+        "name": "Gruppe A",
+        "teamIds": [
+          "team-0008",
+          "team-0002",
+          "team-0005"
+        ],
+        "createdAt": "2025-09-27T12:00:00.000Z"
+      },
+      {
+        "id": "group-0021",
+        "tournamentId": "tour-0001",
+        "name": "Gruppe B",
+        "teamIds": [
+          "team-0011",
+          "team-0014",
+          "team-0017"
+        ],
+        "createdAt": "2025-09-27T12:00:00.000Z"
+      }
+    ],
+    "knockoutStages": [
+      {
+        "id": "ae2d3a0b-4ae7-4151-a2d6-686ad8adb6ea",
+        "tournamentId": "tour-0001",
+        "stageName": "Halbfinale",
+        "kind": "main",
+        "size": 4,
+        "createdAt": "2026-09-25T14:41:45.653Z"
+      },
+      {
+        "id": "fd3d2e4c-ef10-4da7-8ad9-e0eaa7019727",
+        "tournamentId": "tour-0001",
+        "stageName": "Finale",
+        "kind": "main",
+        "size": 2,
+        "createdAt": "2026-09-25T14:41:45.653Z"
+      },
+      {
+        "id": "253808e6-8fc6-4d32-886c-4c6b4a9b47df",
+        "tournamentId": "tour-0001",
+        "stageName": "Spiel um Platz 3",
+        "kind": "third",
+        "size": 2,
+        "createdAt": "2026-09-25T14:41:45.654Z"
+      }
+    ],
+    "createdAt": "2025-09-27T12:00:00.000Z",
+    "updatedAt": "2025-09-27T15:03:00.000Z"
+  },
+  "teams": [
+    {
+      "id": "team-0002",
+      "tournamentId": "tour-0001",
+      "name": "Ausgerechnet die langschwänzigen Bombenleger From Outer Space",
+      "players": [
+        "player-0003",
+        "player-0004"
+      ],
+      "seed": 4,
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "team-0005",
+      "tournamentId": "tour-0001",
+      "name": "New Flanki Generation",
+      "players": [
+        "player-0006",
+        "player-0007"
+      ],
+      "seed": null,
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "team-0008",
+      "tournamentId": "tour-0001",
+      "name": "Die Karibischen Hundefresser",
+      "players": [
+        "player-0009",
+        "player-0010"
+      ],
+      "seed": 2,
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "team-0011",
+      "tournamentId": "tour-0001",
+      "name": "Reparaturhalbe",
+      "players": [
+        "player-0012",
+        "player-0013"
+      ],
+      "seed": 1,
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "team-0014",
+      "tournamentId": "tour-0001",
+      "name": "O'zapft is – Keine Strafhalbe ist auch keine Lösung",
+      "players": [
+        "player-0015",
+        "player-0016"
+      ],
+      "seed": 3,
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "team-0017",
+      "tournamentId": "tour-0001",
+      "name": "Räudige Rektal Renditen",
+      "players": [
+        "player-0018",
+        "player-0019"
+      ],
+      "seed": null,
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    }
+  ],
+  "players": [
+    {
+      "id": "player-0003",
+      "teamId": "team-0002",
+      "name": "Alex",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0004",
+      "teamId": "team-0002",
+      "name": "Segero",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0006",
+      "teamId": "team-0005",
+      "name": "Olli",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0007",
+      "teamId": "team-0005",
+      "name": "Bonsai",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0009",
+      "teamId": "team-0008",
+      "name": "Bearn",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0010",
+      "teamId": "team-0008",
+      "name": "Mortl",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0012",
+      "teamId": "team-0011",
+      "name": "Simon",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0013",
+      "teamId": "team-0011",
+      "name": "Tom",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0015",
+      "teamId": "team-0014",
+      "name": "Wande",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0016",
+      "teamId": "team-0014",
+      "name": "Mike",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0018",
+      "teamId": "team-0017",
+      "name": "Hotti",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    },
+    {
+      "id": "player-0019",
+      "teamId": "team-0017",
+      "name": "Rob",
+      "createdAt": "2025-09-27T12:00:00.000Z"
+    }
+  ],
+  "matches": [
+    {
+      "id": "match-0022",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0020",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0002",
+      "awayTeamId": "team-0005",
+      "sideAssignment": {
+        "homeTeamSide": "side_a",
+        "awayTeamSide": "side_b"
+      },
+      "result": {
+        "winnerTeamId": "team-0002",
+        "homeTeamHits": 5,
+        "homeTeamThrows": 14,
+        "awayTeamHits": 3,
+        "awayTeamThrows": 14,
+        "homeTeamQuote": 0.35714285714285715,
+        "awayTeamQuote": 0.21428571428571427
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0023",
+          "matchId": "match-0022",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:04:24.000Z"
+        },
+        {
+          "id": "throw-0024",
+          "matchId": "match-0022",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:04:48.000Z"
+        },
+        {
+          "id": "throw-0025",
+          "matchId": "match-0022",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 3,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:05:12.000Z"
+        },
+        {
+          "id": "throw-0026",
+          "matchId": "match-0022",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 4,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:05:36.000Z"
+        },
+        {
+          "id": "throw-0027",
+          "matchId": "match-0022",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:06:00.000Z"
+        },
+        {
+          "id": "throw-0028",
+          "matchId": "match-0022",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 6,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:06:24.000Z"
+        },
+        {
+          "id": "throw-0029",
+          "matchId": "match-0022",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 7,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:06:48.000Z"
+        },
+        {
+          "id": "throw-0030",
+          "matchId": "match-0022",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:07:12.000Z"
+        },
+        {
+          "id": "throw-0031",
+          "matchId": "match-0022",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:07:36.000Z"
+        },
+        {
+          "id": "throw-0032",
+          "matchId": "match-0022",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 10,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:08:00.000Z"
+        },
+        {
+          "id": "throw-0033",
+          "matchId": "match-0022",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 11,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:08:24.000Z"
+        },
+        {
+          "id": "throw-0034",
+          "matchId": "match-0022",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:08:48.000Z"
+        },
+        {
+          "id": "throw-0035",
+          "matchId": "match-0022",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 13,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:09:12.000Z"
+        },
+        {
+          "id": "throw-0036",
+          "matchId": "match-0022",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 14,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:09:36.000Z"
+        },
+        {
+          "id": "throw-0037",
+          "matchId": "match-0022",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 15,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:10:00.000Z"
+        },
+        {
+          "id": "throw-0038",
+          "matchId": "match-0022",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 16,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:10:24.000Z"
+        },
+        {
+          "id": "throw-0039",
+          "matchId": "match-0022",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 17,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:10:48.000Z"
+        },
+        {
+          "id": "throw-0040",
+          "matchId": "match-0022",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 18,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:11:12.000Z"
+        },
+        {
+          "id": "throw-0041",
+          "matchId": "match-0022",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 19,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:11:36.000Z"
+        },
+        {
+          "id": "throw-0042",
+          "matchId": "match-0022",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 20,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:12:00.000Z"
+        },
+        {
+          "id": "throw-0043",
+          "matchId": "match-0022",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 21,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:12:24.000Z"
+        },
+        {
+          "id": "throw-0044",
+          "matchId": "match-0022",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 22,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:12:48.000Z"
+        },
+        {
+          "id": "throw-0045",
+          "matchId": "match-0022",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 23,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:13:12.000Z"
+        },
+        {
+          "id": "throw-0046",
+          "matchId": "match-0022",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 24,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:13:36.000Z"
+        },
+        {
+          "id": "throw-0047",
+          "matchId": "match-0022",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 25,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:14:00.000Z"
+        },
+        {
+          "id": "throw-0048",
+          "matchId": "match-0022",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 26,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:14:24.000Z"
+        },
+        {
+          "id": "throw-0049",
+          "matchId": "match-0022",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 27,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:14:48.000Z"
+        },
+        {
+          "id": "throw-0050",
+          "matchId": "match-0022",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 28,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:15:12.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0002": [
+          "player-0003",
+          "player-0004"
+        ],
+        "team-0005": [
+          "player-0006",
+          "player-0007"
+        ]
+      },
+      "startingTeamId": "team-0005",
+      "status": "completed",
+      "penalties": [
+        {
+          "id": "pen-0230",
+          "matchId": "match-0022",
+          "type": "warning",
+          "teamId": "team-0002",
+          "playerId": null,
+          "beforeThrow": 3,
+          "timestamp": "2025-09-27T12:16:12.000Z"
+        },
+        {
+          "id": "pen-0231",
+          "matchId": "match-0022",
+          "type": "warning",
+          "teamId": "team-0002",
+          "playerId": null,
+          "beforeThrow": 5,
+          "timestamp": "2025-09-27T12:16:12.000Z"
+        },
+        {
+          "id": "pen-0232",
+          "matchId": "match-0022",
+          "type": "warning",
+          "teamId": "team-0002",
+          "playerId": null,
+          "beforeThrow": 7,
+          "timestamp": "2025-09-27T12:16:12.000Z"
+        },
+        {
+          "id": "pen-0233",
+          "matchId": "match-0022",
+          "type": "warning",
+          "teamId": "team-0002",
+          "playerId": null,
+          "beforeThrow": 9,
+          "timestamp": "2025-09-27T12:16:12.000Z"
+        }
+      ],
+      "matchday": 1,
+      "createdAt": "2025-09-27T12:04:00.000Z",
+      "updatedAt": "2025-09-27T12:16:12.000Z"
+    },
+    {
+      "id": "match-0051",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0021",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0011",
+      "awayTeamId": "team-0014",
+      "sideAssignment": {
+        "homeTeamSide": "side_b",
+        "awayTeamSide": "side_a"
+      },
+      "result": {
+        "winnerTeamId": "team-0011",
+        "homeTeamHits": 5,
+        "homeTeamThrows": 7,
+        "awayTeamHits": 4,
+        "awayTeamThrows": 6,
+        "homeTeamQuote": 0.7142857142857143,
+        "awayTeamQuote": 0.6666666666666666
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0052",
+          "matchId": "match-0051",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 1,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:20:36.000Z"
+        },
+        {
+          "id": "throw-0053",
+          "matchId": "match-0051",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:21:00.000Z"
+        },
+        {
+          "id": "throw-0054",
+          "matchId": "match-0051",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 3,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:21:24.000Z"
+        },
+        {
+          "id": "throw-0055",
+          "matchId": "match-0051",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 4,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:21:48.000Z"
+        },
+        {
+          "id": "throw-0056",
+          "matchId": "match-0051",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 5,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:22:12.000Z"
+        },
+        {
+          "id": "throw-0057",
+          "matchId": "match-0051",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 6,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:22:36.000Z"
+        },
+        {
+          "id": "throw-0058",
+          "matchId": "match-0051",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:23:00.000Z"
+        },
+        {
+          "id": "throw-0059",
+          "matchId": "match-0051",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:23:24.000Z"
+        },
+        {
+          "id": "throw-0060",
+          "matchId": "match-0051",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 9,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:23:48.000Z"
+        },
+        {
+          "id": "throw-0061",
+          "matchId": "match-0051",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:24:12.000Z"
+        },
+        {
+          "id": "throw-0062",
+          "matchId": "match-0051",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 11,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:24:36.000Z"
+        },
+        {
+          "id": "throw-0063",
+          "matchId": "match-0051",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:25:00.000Z"
+        },
+        {
+          "id": "throw-0064",
+          "matchId": "match-0051",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 13,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:25:24.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0011": [
+          "player-0012",
+          "player-0013"
+        ],
+        "team-0014": [
+          "player-0015",
+          "player-0016"
+        ]
+      },
+      "startingTeamId": "team-0011",
+      "status": "completed",
+      "penalties": [
+        {
+          "id": "pen-0234",
+          "matchId": "match-0051",
+          "type": "warning",
+          "teamId": "team-0011",
+          "playerId": null,
+          "beforeThrow": 3,
+          "timestamp": "2025-09-27T12:26:24.000Z"
+        },
+        {
+          "id": "pen-0235",
+          "matchId": "match-0051",
+          "type": "warning",
+          "teamId": "team-0014",
+          "playerId": null,
+          "beforeThrow": 5,
+          "timestamp": "2025-09-27T12:26:24.000Z"
+        },
+        {
+          "id": "pen-0236",
+          "matchId": "match-0051",
+          "type": "warning",
+          "teamId": "team-0014",
+          "playerId": null,
+          "beforeThrow": 7,
+          "timestamp": "2025-09-27T12:26:24.000Z"
+        }
+      ],
+      "matchday": 1,
+      "createdAt": "2025-09-27T12:20:12.000Z",
+      "updatedAt": "2025-09-27T12:26:24.000Z"
+    },
+    {
+      "id": "match-0065",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0020",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0008",
+      "awayTeamId": "team-0002",
+      "sideAssignment": {
+        "homeTeamSide": "side_a",
+        "awayTeamSide": "side_b"
+      },
+      "result": {
+        "winnerTeamId": "team-0002",
+        "homeTeamHits": 4,
+        "homeTeamThrows": 8,
+        "awayTeamHits": 5,
+        "awayTeamThrows": 9,
+        "homeTeamQuote": 0.5,
+        "awayTeamQuote": 0.5555555555555556
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0066",
+          "matchId": "match-0065",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:30:48.000Z"
+        },
+        {
+          "id": "throw-0067",
+          "matchId": "match-0065",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:31:12.000Z"
+        },
+        {
+          "id": "throw-0068",
+          "matchId": "match-0065",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:31:36.000Z"
+        },
+        {
+          "id": "throw-0069",
+          "matchId": "match-0065",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 4,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:32:00.000Z"
+        },
+        {
+          "id": "throw-0070",
+          "matchId": "match-0065",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:32:24.000Z"
+        },
+        {
+          "id": "throw-0071",
+          "matchId": "match-0065",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 6,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:32:48.000Z"
+        },
+        {
+          "id": "throw-0072",
+          "matchId": "match-0065",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:33:12.000Z"
+        },
+        {
+          "id": "throw-0073",
+          "matchId": "match-0065",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 8,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:33:36.000Z"
+        },
+        {
+          "id": "throw-0074",
+          "matchId": "match-0065",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:34:00.000Z"
+        },
+        {
+          "id": "throw-0075",
+          "matchId": "match-0065",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 10,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:34:24.000Z"
+        },
+        {
+          "id": "throw-0076",
+          "matchId": "match-0065",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 11,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:34:48.000Z"
+        },
+        {
+          "id": "throw-0077",
+          "matchId": "match-0065",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:35:12.000Z"
+        },
+        {
+          "id": "throw-0078",
+          "matchId": "match-0065",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 13,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:35:36.000Z"
+        },
+        {
+          "id": "throw-0079",
+          "matchId": "match-0065",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 14,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:36:00.000Z"
+        },
+        {
+          "id": "throw-0080",
+          "matchId": "match-0065",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 15,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:36:24.000Z"
+        },
+        {
+          "id": "throw-0081",
+          "matchId": "match-0065",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 16,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:36:48.000Z"
+        },
+        {
+          "id": "throw-0082",
+          "matchId": "match-0065",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 17,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:37:12.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0008": [
+          "player-0009",
+          "player-0010"
+        ],
+        "team-0002": [
+          "player-0003",
+          "player-0004"
+        ]
+      },
+      "startingTeamId": "team-0002",
+      "status": "completed",
+      "penalties": [
+        {
+          "id": "pen-0229",
+          "matchId": "match-0065",
+          "type": "warning",
+          "teamId": "team-0008",
+          "playerId": null,
+          "beforeThrow": 3,
+          "timestamp": "2025-09-27T12:38:12.000Z"
+        }
+      ],
+      "matchday": 2,
+      "createdAt": "2025-09-27T12:30:24.000Z",
+      "updatedAt": "2025-09-27T12:38:12.000Z"
+    },
+    {
+      "id": "match-0083",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0021",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0017",
+      "awayTeamId": "team-0011",
+      "sideAssignment": {
+        "homeTeamSide": "side_b",
+        "awayTeamSide": "side_a"
+      },
+      "result": {
+        "winnerTeamId": "team-0011",
+        "homeTeamHits": 3,
+        "homeTeamThrows": 10,
+        "awayTeamHits": 5,
+        "awayTeamThrows": 11,
+        "homeTeamQuote": 0.3,
+        "awayTeamQuote": 0.45454545454545453
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0084",
+          "matchId": "match-0083",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:42:36.000Z"
+        },
+        {
+          "id": "throw-0085",
+          "matchId": "match-0083",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:43:00.000Z"
+        },
+        {
+          "id": "throw-0086",
+          "matchId": "match-0083",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:43:24.000Z"
+        },
+        {
+          "id": "throw-0087",
+          "matchId": "match-0083",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 4,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:43:48.000Z"
+        },
+        {
+          "id": "throw-0088",
+          "matchId": "match-0083",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:44:12.000Z"
+        },
+        {
+          "id": "throw-0089",
+          "matchId": "match-0083",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 6,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:44:36.000Z"
+        },
+        {
+          "id": "throw-0090",
+          "matchId": "match-0083",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:45:00.000Z"
+        },
+        {
+          "id": "throw-0091",
+          "matchId": "match-0083",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:45:24.000Z"
+        },
+        {
+          "id": "throw-0092",
+          "matchId": "match-0083",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 9,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:45:48.000Z"
+        },
+        {
+          "id": "throw-0093",
+          "matchId": "match-0083",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 10,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:46:12.000Z"
+        },
+        {
+          "id": "throw-0094",
+          "matchId": "match-0083",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 11,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:46:36.000Z"
+        },
+        {
+          "id": "throw-0095",
+          "matchId": "match-0083",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 12,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:47:00.000Z"
+        },
+        {
+          "id": "throw-0096",
+          "matchId": "match-0083",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 13,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:47:24.000Z"
+        },
+        {
+          "id": "throw-0097",
+          "matchId": "match-0083",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 14,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:47:48.000Z"
+        },
+        {
+          "id": "throw-0098",
+          "matchId": "match-0083",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 15,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:48:12.000Z"
+        },
+        {
+          "id": "throw-0099",
+          "matchId": "match-0083",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 16,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:48:36.000Z"
+        },
+        {
+          "id": "throw-0100",
+          "matchId": "match-0083",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 17,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:49:00.000Z"
+        },
+        {
+          "id": "throw-0101",
+          "matchId": "match-0083",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 18,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:49:24.000Z"
+        },
+        {
+          "id": "throw-0102",
+          "matchId": "match-0083",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 19,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:49:48.000Z"
+        },
+        {
+          "id": "throw-0103",
+          "matchId": "match-0083",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 20,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:50:12.000Z"
+        },
+        {
+          "id": "throw-0104",
+          "matchId": "match-0083",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 21,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:50:36.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0017": [
+          "player-0018",
+          "player-0019"
+        ],
+        "team-0011": [
+          "player-0012",
+          "player-0013"
+        ]
+      },
+      "startingTeamId": "team-0011",
+      "status": "completed",
+      "penalties": [
+        {
+          "id": "pen-0223",
+          "matchId": "match-0083",
+          "type": "skip_player",
+          "teamId": "team-0017",
+          "playerId": "player-0018",
+          "beforeThrow": 3,
+          "timestamp": "2025-09-27T12:51:36.000Z"
+        },
+        {
+          "id": "pen-0224",
+          "matchId": "match-0083",
+          "type": "skip_team",
+          "teamId": "team-0017",
+          "playerId": null,
+          "beforeThrow": 5,
+          "timestamp": "2025-09-27T12:51:36.000Z"
+        },
+        {
+          "id": "pen-0225",
+          "matchId": "match-0083",
+          "type": "strafhalbe",
+          "teamId": "team-0017",
+          "playerId": "player-0018",
+          "beforeThrow": 7,
+          "timestamp": "2025-09-27T12:51:36.000Z"
+        },
+        {
+          "id": "pen-0237",
+          "matchId": "match-0083",
+          "type": "warning",
+          "teamId": "team-0017",
+          "playerId": null,
+          "beforeThrow": 9,
+          "timestamp": "2025-09-27T12:51:36.000Z"
+        }
+      ],
+      "matchday": 2,
+      "createdAt": "2025-09-27T12:42:12.000Z",
+      "updatedAt": "2025-09-27T12:51:36.000Z"
+    },
+    {
+      "id": "match-0105",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0020",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0005",
+      "awayTeamId": "team-0008",
+      "sideAssignment": {
+        "homeTeamSide": "side_a",
+        "awayTeamSide": "side_b"
+      },
+      "result": {
+        "winnerTeamId": "team-0008",
+        "homeTeamHits": 3,
+        "homeTeamThrows": 5,
+        "awayTeamHits": 5,
+        "awayTeamThrows": 6,
+        "homeTeamQuote": 0.6,
+        "awayTeamQuote": 0.8333333333333334
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0106",
+          "matchId": "match-0105",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 1,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:56:00.000Z"
+        },
+        {
+          "id": "throw-0107",
+          "matchId": "match-0105",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:56:24.000Z"
+        },
+        {
+          "id": "throw-0108",
+          "matchId": "match-0105",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:56:48.000Z"
+        },
+        {
+          "id": "throw-0109",
+          "matchId": "match-0105",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 4,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:57:12.000Z"
+        },
+        {
+          "id": "throw-0110",
+          "matchId": "match-0105",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:57:36.000Z"
+        },
+        {
+          "id": "throw-0111",
+          "matchId": "match-0105",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 6,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:58:00.000Z"
+        },
+        {
+          "id": "throw-0112",
+          "matchId": "match-0105",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:58:24.000Z"
+        },
+        {
+          "id": "throw-0113",
+          "matchId": "match-0105",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T12:58:48.000Z"
+        },
+        {
+          "id": "throw-0114",
+          "matchId": "match-0105",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:59:12.000Z"
+        },
+        {
+          "id": "throw-0115",
+          "matchId": "match-0105",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T12:59:36.000Z"
+        },
+        {
+          "id": "throw-0116",
+          "matchId": "match-0105",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 11,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:00:00.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0005": [
+          "player-0006",
+          "player-0007"
+        ],
+        "team-0008": [
+          "player-0009",
+          "player-0010"
+        ]
+      },
+      "startingTeamId": "team-0008",
+      "status": "completed",
+      "penalties": [],
+      "matchday": 3,
+      "createdAt": "2025-09-27T12:55:36.000Z",
+      "updatedAt": "2025-09-27T13:01:00.000Z"
+    },
+    {
+      "id": "match-0117",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0021",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0014",
+      "awayTeamId": "team-0017",
+      "sideAssignment": {
+        "homeTeamSide": "side_b",
+        "awayTeamSide": "side_a"
+      },
+      "result": {
+        "winnerTeamId": "team-0014",
+        "homeTeamHits": 5,
+        "homeTeamThrows": 7,
+        "awayTeamHits": 1,
+        "awayTeamThrows": 6,
+        "homeTeamQuote": 0.7142857142857143,
+        "awayTeamQuote": 0.16666666666666666
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0118",
+          "matchId": "match-0117",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 1,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:05:24.000Z"
+        },
+        {
+          "id": "throw-0119",
+          "matchId": "match-0117",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:05:48.000Z"
+        },
+        {
+          "id": "throw-0120",
+          "matchId": "match-0117",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 3,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:06:12.000Z"
+        },
+        {
+          "id": "throw-0121",
+          "matchId": "match-0117",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 4,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:06:36.000Z"
+        },
+        {
+          "id": "throw-0122",
+          "matchId": "match-0117",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 5,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:07:00.000Z"
+        },
+        {
+          "id": "throw-0123",
+          "matchId": "match-0117",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 6,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:07:24.000Z"
+        },
+        {
+          "id": "throw-0124",
+          "matchId": "match-0117",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:07:48.000Z"
+        },
+        {
+          "id": "throw-0125",
+          "matchId": "match-0117",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:08:12.000Z"
+        },
+        {
+          "id": "throw-0126",
+          "matchId": "match-0117",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 9,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:08:36.000Z"
+        },
+        {
+          "id": "throw-0127",
+          "matchId": "match-0117",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 10,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:09:00.000Z"
+        },
+        {
+          "id": "throw-0128",
+          "matchId": "match-0117",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 11,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:09:24.000Z"
+        },
+        {
+          "id": "throw-0129",
+          "matchId": "match-0117",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:09:48.000Z"
+        },
+        {
+          "id": "throw-0130",
+          "matchId": "match-0117",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 13,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:10:12.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0014": [
+          "player-0015",
+          "player-0016"
+        ],
+        "team-0017": [
+          "player-0018",
+          "player-0019"
+        ]
+      },
+      "startingTeamId": "team-0014",
+      "status": "completed",
+      "penalties": [],
+      "matchday": 3,
+      "createdAt": "2025-09-27T13:05:00.000Z",
+      "updatedAt": "2025-09-27T13:11:12.000Z"
+    },
+    {
+      "id": "match-0131",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0020",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0005",
+      "awayTeamId": "team-0002",
+      "sideAssignment": {
+        "homeTeamSide": "side_a",
+        "awayTeamSide": "side_b"
+      },
+      "result": {
+        "winnerTeamId": "team-0005",
+        "homeTeamHits": 4,
+        "homeTeamThrows": 8,
+        "awayTeamHits": 3,
+        "awayTeamThrows": 7,
+        "homeTeamQuote": 0.5,
+        "awayTeamQuote": 0.42857142857142855
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0132",
+          "matchId": "match-0131",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:15:36.000Z"
+        },
+        {
+          "id": "throw-0133",
+          "matchId": "match-0131",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:16:00.000Z"
+        },
+        {
+          "id": "throw-0134",
+          "matchId": "match-0131",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:16:24.000Z"
+        },
+        {
+          "id": "throw-0135",
+          "matchId": "match-0131",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 4,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:16:48.000Z"
+        },
+        {
+          "id": "throw-0136",
+          "matchId": "match-0131",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:17:12.000Z"
+        },
+        {
+          "id": "throw-0137",
+          "matchId": "match-0131",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 6,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:17:36.000Z"
+        },
+        {
+          "id": "throw-0138",
+          "matchId": "match-0131",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:18:00.000Z"
+        },
+        {
+          "id": "throw-0139",
+          "matchId": "match-0131",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:18:24.000Z"
+        },
+        {
+          "id": "throw-0140",
+          "matchId": "match-0131",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 9,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:18:48.000Z"
+        },
+        {
+          "id": "throw-0141",
+          "matchId": "match-0131",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:19:12.000Z"
+        },
+        {
+          "id": "throw-0142",
+          "matchId": "match-0131",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 11,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:19:36.000Z"
+        },
+        {
+          "id": "throw-0143",
+          "matchId": "match-0131",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 12,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:20:00.000Z"
+        },
+        {
+          "id": "throw-0144",
+          "matchId": "match-0131",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 13,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:20:24.000Z"
+        },
+        {
+          "id": "throw-0145",
+          "matchId": "match-0131",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 14,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:20:48.000Z"
+        },
+        {
+          "id": "throw-0146",
+          "matchId": "match-0131",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 15,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:21:12.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0005": [
+          "player-0006",
+          "player-0007"
+        ],
+        "team-0002": [
+          "player-0003",
+          "player-0004"
+        ]
+      },
+      "startingTeamId": "team-0005",
+      "status": "completed",
+      "penalties": [],
+      "matchday": 4,
+      "createdAt": "2025-09-27T13:15:12.000Z",
+      "updatedAt": "2025-09-27T13:22:12.000Z"
+    },
+    {
+      "id": "match-0147",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0021",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0014",
+      "awayTeamId": "team-0011",
+      "sideAssignment": {
+        "homeTeamSide": "side_b",
+        "awayTeamSide": "side_a"
+      },
+      "result": {
+        "winnerTeamId": "team-0011",
+        "homeTeamHits": 2,
+        "homeTeamThrows": 5,
+        "awayTeamHits": 5,
+        "awayTeamThrows": 6,
+        "homeTeamQuote": 0.4,
+        "awayTeamQuote": 0.8333333333333334
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0148",
+          "matchId": "match-0147",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 1,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:26:36.000Z"
+        },
+        {
+          "id": "throw-0149",
+          "matchId": "match-0147",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:27:00.000Z"
+        },
+        {
+          "id": "throw-0150",
+          "matchId": "match-0147",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:27:24.000Z"
+        },
+        {
+          "id": "throw-0151",
+          "matchId": "match-0147",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 4,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:27:48.000Z"
+        },
+        {
+          "id": "throw-0152",
+          "matchId": "match-0147",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:28:12.000Z"
+        },
+        {
+          "id": "throw-0153",
+          "matchId": "match-0147",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 6,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:28:36.000Z"
+        },
+        {
+          "id": "throw-0154",
+          "matchId": "match-0147",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:29:00.000Z"
+        },
+        {
+          "id": "throw-0155",
+          "matchId": "match-0147",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:29:24.000Z"
+        },
+        {
+          "id": "throw-0156",
+          "matchId": "match-0147",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:29:48.000Z"
+        },
+        {
+          "id": "throw-0157",
+          "matchId": "match-0147",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:30:12.000Z"
+        },
+        {
+          "id": "throw-0158",
+          "matchId": "match-0147",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 11,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:30:36.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0014": [
+          "player-0015",
+          "player-0016"
+        ],
+        "team-0011": [
+          "player-0012",
+          "player-0013"
+        ]
+      },
+      "startingTeamId": "team-0011",
+      "status": "completed",
+      "penalties": [
+        {
+          "id": "pen-0226",
+          "matchId": "match-0147",
+          "type": "skip_player",
+          "teamId": "team-0011",
+          "playerId": "player-0012",
+          "beforeThrow": 3,
+          "timestamp": "2025-09-27T13:31:36.000Z"
+        }
+      ],
+      "matchday": 4,
+      "createdAt": "2025-09-27T13:26:12.000Z",
+      "updatedAt": "2025-09-27T13:31:36.000Z"
+    },
+    {
+      "id": "match-0159",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0020",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0002",
+      "awayTeamId": "team-0008",
+      "sideAssignment": {
+        "homeTeamSide": "side_a",
+        "awayTeamSide": "side_b"
+      },
+      "result": {
+        "winnerTeamId": "team-0008",
+        "homeTeamHits": 5,
+        "homeTeamThrows": 6,
+        "awayTeamHits": 5,
+        "awayTeamThrows": 6,
+        "homeTeamQuote": 0.8333333333333334,
+        "awayTeamQuote": 0.8333333333333334
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0160",
+          "matchId": "match-0159",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 1,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:36:00.000Z"
+        },
+        {
+          "id": "throw-0161",
+          "matchId": "match-0159",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 2,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:36:24.000Z"
+        },
+        {
+          "id": "throw-0162",
+          "matchId": "match-0159",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:36:48.000Z"
+        },
+        {
+          "id": "throw-0163",
+          "matchId": "match-0159",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 4,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:37:12.000Z"
+        },
+        {
+          "id": "throw-0164",
+          "matchId": "match-0159",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:37:36.000Z"
+        },
+        {
+          "id": "throw-0165",
+          "matchId": "match-0159",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 6,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:38:00.000Z"
+        },
+        {
+          "id": "throw-0166",
+          "matchId": "match-0159",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:38:24.000Z"
+        },
+        {
+          "id": "throw-0167",
+          "matchId": "match-0159",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 8,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:38:48.000Z"
+        },
+        {
+          "id": "throw-0168",
+          "matchId": "match-0159",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:39:12.000Z"
+        },
+        {
+          "id": "throw-0169",
+          "matchId": "match-0159",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:39:36.000Z"
+        },
+        {
+          "id": "throw-0170",
+          "matchId": "match-0159",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 11,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:40:00.000Z"
+        },
+        {
+          "id": "throw-0171",
+          "matchId": "match-0159",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:40:24.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0002": [
+          "player-0003",
+          "player-0004"
+        ],
+        "team-0008": [
+          "player-0009",
+          "player-0010"
+        ]
+      },
+      "startingTeamId": "team-0002",
+      "status": "completed",
+      "penalties": [
+        {
+          "id": "pen-0227",
+          "matchId": "match-0159",
+          "type": "strafhalbe",
+          "teamId": "team-0002",
+          "playerId": "player-0003",
+          "beforeThrow": 3,
+          "timestamp": "2025-09-27T13:41:24.000Z"
+        },
+        {
+          "id": "pen-0228",
+          "matchId": "match-0159",
+          "type": "strafhalbe",
+          "teamId": "team-0002",
+          "playerId": "player-0003",
+          "beforeThrow": 5,
+          "timestamp": "2025-09-27T13:41:24.000Z"
+        }
+      ],
+      "matchday": 5,
+      "createdAt": "2025-09-27T13:35:36.000Z",
+      "updatedAt": "2025-09-27T13:41:24.000Z"
+    },
+    {
+      "id": "match-0172",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0021",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0011",
+      "awayTeamId": "team-0017",
+      "sideAssignment": {
+        "homeTeamSide": "side_b",
+        "awayTeamSide": "side_a"
+      },
+      "result": {
+        "winnerTeamId": "team-0011",
+        "homeTeamHits": 4,
+        "homeTeamThrows": 13,
+        "awayTeamHits": 4,
+        "awayTeamThrows": 12,
+        "homeTeamQuote": 0.3076923076923077,
+        "awayTeamQuote": 0.3333333333333333
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0173",
+          "matchId": "match-0172",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:45:48.000Z"
+        },
+        {
+          "id": "throw-0174",
+          "matchId": "match-0172",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:46:12.000Z"
+        },
+        {
+          "id": "throw-0175",
+          "matchId": "match-0172",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 3,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:46:36.000Z"
+        },
+        {
+          "id": "throw-0176",
+          "matchId": "match-0172",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 4,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:47:00.000Z"
+        },
+        {
+          "id": "throw-0177",
+          "matchId": "match-0172",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 5,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:47:24.000Z"
+        },
+        {
+          "id": "throw-0178",
+          "matchId": "match-0172",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 6,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:47:48.000Z"
+        },
+        {
+          "id": "throw-0179",
+          "matchId": "match-0172",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 7,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:48:12.000Z"
+        },
+        {
+          "id": "throw-0180",
+          "matchId": "match-0172",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:48:36.000Z"
+        },
+        {
+          "id": "throw-0181",
+          "matchId": "match-0172",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 9,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:49:00.000Z"
+        },
+        {
+          "id": "throw-0182",
+          "matchId": "match-0172",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 10,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:49:24.000Z"
+        },
+        {
+          "id": "throw-0183",
+          "matchId": "match-0172",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 11,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:49:48.000Z"
+        },
+        {
+          "id": "throw-0184",
+          "matchId": "match-0172",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:50:12.000Z"
+        },
+        {
+          "id": "throw-0185",
+          "matchId": "match-0172",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 13,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:50:36.000Z"
+        },
+        {
+          "id": "throw-0186",
+          "matchId": "match-0172",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 14,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:51:00.000Z"
+        },
+        {
+          "id": "throw-0187",
+          "matchId": "match-0172",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 15,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:51:24.000Z"
+        },
+        {
+          "id": "throw-0188",
+          "matchId": "match-0172",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 16,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:51:48.000Z"
+        },
+        {
+          "id": "throw-0189",
+          "matchId": "match-0172",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 17,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:52:12.000Z"
+        },
+        {
+          "id": "throw-0190",
+          "matchId": "match-0172",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 18,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:52:36.000Z"
+        },
+        {
+          "id": "throw-0191",
+          "matchId": "match-0172",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 19,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:53:00.000Z"
+        },
+        {
+          "id": "throw-0192",
+          "matchId": "match-0172",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 20,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:53:24.000Z"
+        },
+        {
+          "id": "throw-0193",
+          "matchId": "match-0172",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 21,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:53:48.000Z"
+        },
+        {
+          "id": "throw-0194",
+          "matchId": "match-0172",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 22,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:54:12.000Z"
+        },
+        {
+          "id": "throw-0195",
+          "matchId": "match-0172",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 23,
+          "isHit": false,
+          "timestamp": "2025-09-27T13:54:36.000Z"
+        },
+        {
+          "id": "throw-0196",
+          "matchId": "match-0172",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 24,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:55:00.000Z"
+        },
+        {
+          "id": "throw-0197",
+          "matchId": "match-0172",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 25,
+          "isHit": true,
+          "timestamp": "2025-09-27T13:55:24.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0011": [
+          "player-0012",
+          "player-0013"
+        ],
+        "team-0017": [
+          "player-0018",
+          "player-0019"
+        ]
+      },
+      "startingTeamId": "team-0011",
+      "status": "completed",
+      "penalties": [],
+      "matchday": 5,
+      "createdAt": "2025-09-27T13:45:24.000Z",
+      "updatedAt": "2025-09-27T13:56:24.000Z"
+    },
+    {
+      "id": "match-0198",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0020",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0008",
+      "awayTeamId": "team-0005",
+      "sideAssignment": {
+        "homeTeamSide": "side_a",
+        "awayTeamSide": "side_b"
+      },
+      "result": {
+        "winnerTeamId": "team-0008",
+        "homeTeamHits": 5,
+        "homeTeamThrows": 6,
+        "awayTeamHits": 1,
+        "awayTeamThrows": 5,
+        "homeTeamQuote": 0.8333333333333334,
+        "awayTeamQuote": 0.2
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0199",
+          "matchId": "match-0198",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 1,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:00:48.000Z"
+        },
+        {
+          "id": "throw-0200",
+          "matchId": "match-0198",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:01:12.000Z"
+        },
+        {
+          "id": "throw-0201",
+          "matchId": "match-0198",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:01:36.000Z"
+        },
+        {
+          "id": "throw-0202",
+          "matchId": "match-0198",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 4,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:02:00.000Z"
+        },
+        {
+          "id": "throw-0203",
+          "matchId": "match-0198",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:02:24.000Z"
+        },
+        {
+          "id": "throw-0204",
+          "matchId": "match-0198",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 6,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:02:48.000Z"
+        },
+        {
+          "id": "throw-0205",
+          "matchId": "match-0198",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:03:12.000Z"
+        },
+        {
+          "id": "throw-0206",
+          "matchId": "match-0198",
+          "playerId": "player-0007",
+          "teamId": "team-0005",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:03:36.000Z"
+        },
+        {
+          "id": "throw-0207",
+          "matchId": "match-0198",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:04:00.000Z"
+        },
+        {
+          "id": "throw-0208",
+          "matchId": "match-0198",
+          "playerId": "player-0006",
+          "teamId": "team-0005",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:04:24.000Z"
+        },
+        {
+          "id": "throw-0209",
+          "matchId": "match-0198",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 11,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:04:48.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0008": [
+          "player-0009",
+          "player-0010"
+        ],
+        "team-0005": [
+          "player-0006",
+          "player-0007"
+        ]
+      },
+      "startingTeamId": "team-0008",
+      "status": "completed",
+      "penalties": [],
+      "matchday": 6,
+      "createdAt": "2025-09-27T14:00:24.000Z",
+      "updatedAt": "2025-09-27T14:05:48.000Z"
+    },
+    {
+      "id": "match-0210",
+      "tournamentId": "tour-0001",
+      "groupId": "group-0021",
+      "knockoutStageId": null,
+      "slot": null,
+      "label": null,
+      "homeTeamId": "team-0017",
+      "awayTeamId": "team-0014",
+      "sideAssignment": {
+        "homeTeamSide": "side_b",
+        "awayTeamSide": "side_a"
+      },
+      "result": {
+        "winnerTeamId": "team-0014",
+        "homeTeamHits": 4,
+        "homeTeamThrows": 6,
+        "awayTeamHits": 4,
+        "awayTeamThrows": 6,
+        "homeTeamQuote": 0.6666666666666666,
+        "awayTeamQuote": 0.6666666666666666
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0211",
+          "matchId": "match-0210",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:10:12.000Z"
+        },
+        {
+          "id": "throw-0212",
+          "matchId": "match-0210",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:10:36.000Z"
+        },
+        {
+          "id": "throw-0213",
+          "matchId": "match-0210",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:11:00.000Z"
+        },
+        {
+          "id": "throw-0214",
+          "matchId": "match-0210",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 4,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:11:24.000Z"
+        },
+        {
+          "id": "throw-0215",
+          "matchId": "match-0210",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 5,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:11:48.000Z"
+        },
+        {
+          "id": "throw-0216",
+          "matchId": "match-0210",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 6,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:12:12.000Z"
+        },
+        {
+          "id": "throw-0217",
+          "matchId": "match-0210",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 7,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:12:36.000Z"
+        },
+        {
+          "id": "throw-0218",
+          "matchId": "match-0210",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:13:00.000Z"
+        },
+        {
+          "id": "throw-0219",
+          "matchId": "match-0210",
+          "playerId": "player-0018",
+          "teamId": "team-0017",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:13:24.000Z"
+        },
+        {
+          "id": "throw-0220",
+          "matchId": "match-0210",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:13:48.000Z"
+        },
+        {
+          "id": "throw-0221",
+          "matchId": "match-0210",
+          "playerId": "player-0019",
+          "teamId": "team-0017",
+          "throwNumber": 11,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:14:12.000Z"
+        },
+        {
+          "id": "throw-0222",
+          "matchId": "match-0210",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:14:36.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0017": [
+          "player-0018",
+          "player-0019"
+        ],
+        "team-0014": [
+          "player-0015",
+          "player-0016"
+        ]
+      },
+      "startingTeamId": "team-0017",
+      "status": "completed",
+      "penalties": [],
+      "matchday": 6,
+      "createdAt": "2025-09-27T14:09:48.000Z",
+      "updatedAt": "2025-09-27T14:15:36.000Z"
+    },
+    {
+      "id": "4fc46905-4968-48e4-87c6-fc627361137d",
+      "tournamentId": "tour-0001",
+      "groupId": null,
+      "knockoutStageId": "ae2d3a0b-4ae7-4151-a2d6-686ad8adb6ea",
+      "slot": 0,
+      "label": null,
+      "homeTeamId": "team-0011",
+      "awayTeamId": "team-0002",
+      "sideAssignment": {
+        "homeTeamSide": "side_a",
+        "awayTeamSide": "side_b"
+      },
+      "result": {
+        "winnerTeamId": "team-0011",
+        "homeTeamHits": 5,
+        "homeTeamThrows": 7,
+        "awayTeamHits": 3,
+        "awayTeamThrows": 7,
+        "homeTeamQuote": 0.7142857142857143,
+        "awayTeamQuote": 0.42857142857142855
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0252",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:29:48.000Z"
+        },
+        {
+          "id": "throw-0253",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 2,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:30:12.000Z"
+        },
+        {
+          "id": "throw-0254",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:30:36.000Z"
+        },
+        {
+          "id": "throw-0255",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 4,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:31:00.000Z"
+        },
+        {
+          "id": "throw-0256",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:31:24.000Z"
+        },
+        {
+          "id": "throw-0257",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 6,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:31:48.000Z"
+        },
+        {
+          "id": "throw-0258",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 7,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:32:12.000Z"
+        },
+        {
+          "id": "throw-0259",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 8,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:32:36.000Z"
+        },
+        {
+          "id": "throw-0260",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:33:00.000Z"
+        },
+        {
+          "id": "throw-0261",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 10,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:33:24.000Z"
+        },
+        {
+          "id": "throw-0262",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 11,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:33:48.000Z"
+        },
+        {
+          "id": "throw-0263",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:34:12.000Z"
+        },
+        {
+          "id": "throw-0264",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 13,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:34:36.000Z"
+        },
+        {
+          "id": "throw-0265",
+          "matchId": "4fc46905-4968-48e4-87c6-fc627361137d",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 14,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:35:00.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0011": [
+          "player-0012",
+          "player-0013"
+        ],
+        "team-0002": [
+          "player-0003",
+          "player-0004"
+        ]
+      },
+      "startingTeamId": "team-0002",
+      "status": "completed",
+      "createdAt": "2025-09-27T14:29:24.000Z",
+      "updatedAt": "2025-09-27T14:36:00.000Z",
+      "penalties": []
+    },
+    {
+      "id": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+      "tournamentId": "tour-0001",
+      "groupId": null,
+      "knockoutStageId": "ae2d3a0b-4ae7-4151-a2d6-686ad8adb6ea",
+      "slot": 1,
+      "label": null,
+      "homeTeamId": "team-0008",
+      "awayTeamId": "team-0014",
+      "sideAssignment": {
+        "homeTeamSide": "side_a",
+        "awayTeamSide": "side_b"
+      },
+      "result": {
+        "winnerTeamId": "team-0014",
+        "homeTeamHits": 3,
+        "homeTeamThrows": 6,
+        "awayTeamHits": 5,
+        "awayTeamThrows": 6,
+        "homeTeamQuote": 0.5,
+        "awayTeamQuote": 0.8333333333333334
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0238",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:20:00.000Z"
+        },
+        {
+          "id": "throw-0239",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 2,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:20:24.000Z"
+        },
+        {
+          "id": "throw-0240",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:20:48.000Z"
+        },
+        {
+          "id": "throw-0241",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 4,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:21:12.000Z"
+        },
+        {
+          "id": "throw-0242",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:21:36.000Z"
+        },
+        {
+          "id": "throw-0243",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 6,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:22:00.000Z"
+        },
+        {
+          "id": "throw-0244",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 7,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:22:24.000Z"
+        },
+        {
+          "id": "throw-0245",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 8,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:22:48.000Z"
+        },
+        {
+          "id": "throw-0246",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 9,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:23:12.000Z"
+        },
+        {
+          "id": "throw-0247",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:23:36.000Z"
+        },
+        {
+          "id": "throw-0248",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 11,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:24:00.000Z"
+        },
+        {
+          "id": "throw-0249",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:24:24.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0008": [
+          "player-0009",
+          "player-0010"
+        ],
+        "team-0014": [
+          "player-0015",
+          "player-0016"
+        ]
+      },
+      "startingTeamId": "team-0008",
+      "status": "completed",
+      "createdAt": "2025-09-27T14:19:36.000Z",
+      "updatedAt": "2025-09-27T14:25:24.000Z",
+      "penalties": [
+        {
+          "id": "pen-0250",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "type": "strafhalbe",
+          "teamId": "team-0008",
+          "playerId": "player-0009",
+          "beforeThrow": 3,
+          "timestamp": "2025-09-27T14:25:24.000Z"
+        },
+        {
+          "id": "pen-0251",
+          "matchId": "fe47f867-17a7-4f56-ab0d-63d74de97ebb",
+          "type": "strafhalbe",
+          "teamId": "team-0014",
+          "playerId": "player-0015",
+          "beforeThrow": 5,
+          "timestamp": "2025-09-27T14:25:24.000Z"
+        }
+      ]
+    },
+    {
+      "id": "3217c6c5-9435-4687-8b04-a28605acad86",
+      "tournamentId": "tour-0001",
+      "groupId": null,
+      "knockoutStageId": "fd3d2e4c-ef10-4da7-8ad9-e0eaa7019727",
+      "slot": 0,
+      "label": null,
+      "homeTeamId": "team-0011",
+      "awayTeamId": "team-0014",
+      "sideAssignment": {
+        "homeTeamSide": "side_b",
+        "awayTeamSide": "side_a"
+      },
+      "result": {
+        "winnerTeamId": "team-0014",
+        "homeTeamHits": 3,
+        "homeTeamThrows": 7,
+        "awayTeamHits": 3,
+        "awayTeamThrows": 7,
+        "homeTeamQuote": 0.42857142857142855,
+        "awayTeamQuote": 0.42857142857142855
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0282",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:51:48.000Z"
+        },
+        {
+          "id": "throw-0283",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:52:12.000Z"
+        },
+        {
+          "id": "throw-0284",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 3,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:52:36.000Z"
+        },
+        {
+          "id": "throw-0285",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 4,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:53:00.000Z"
+        },
+        {
+          "id": "throw-0286",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 5,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:53:24.000Z"
+        },
+        {
+          "id": "throw-0287",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 6,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:53:48.000Z"
+        },
+        {
+          "id": "throw-0288",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 7,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:54:12.000Z"
+        },
+        {
+          "id": "throw-0289",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:54:36.000Z"
+        },
+        {
+          "id": "throw-0290",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:55:00.000Z"
+        },
+        {
+          "id": "throw-0291",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:55:24.000Z"
+        },
+        {
+          "id": "throw-0292",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0013",
+          "teamId": "team-0011",
+          "throwNumber": 11,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:55:48.000Z"
+        },
+        {
+          "id": "throw-0293",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0016",
+          "teamId": "team-0014",
+          "throwNumber": 12,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:56:12.000Z"
+        },
+        {
+          "id": "throw-0294",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0012",
+          "teamId": "team-0011",
+          "throwNumber": 13,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:56:36.000Z"
+        },
+        {
+          "id": "throw-0295",
+          "matchId": "3217c6c5-9435-4687-8b04-a28605acad86",
+          "playerId": "player-0015",
+          "teamId": "team-0014",
+          "throwNumber": 14,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:57:00.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0011": [
+          "player-0012",
+          "player-0013"
+        ],
+        "team-0014": [
+          "player-0015",
+          "player-0016"
+        ]
+      },
+      "startingTeamId": "team-0011",
+      "status": "completed",
+      "createdAt": "2025-09-27T14:51:24.000Z",
+      "updatedAt": "2025-09-27T14:58:00.000Z",
+      "penalties": []
+    },
+    {
+      "id": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+      "tournamentId": "tour-0001",
+      "groupId": null,
+      "knockoutStageId": "253808e6-8fc6-4d32-886c-4c6b4a9b47df",
+      "slot": 0,
+      "label": null,
+      "homeTeamId": "team-0002",
+      "awayTeamId": "team-0008",
+      "sideAssignment": {
+        "homeTeamSide": "side_a",
+        "awayTeamSide": "side_b"
+      },
+      "result": {
+        "winnerTeamId": "team-0008",
+        "homeTeamHits": 3,
+        "homeTeamThrows": 8,
+        "awayTeamHits": 5,
+        "awayTeamThrows": 8,
+        "homeTeamQuote": 0.375,
+        "awayTeamQuote": 0.625
+      },
+      "throwSequence": [
+        {
+          "id": "throw-0266",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 1,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:40:24.000Z"
+        },
+        {
+          "id": "throw-0267",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 2,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:40:48.000Z"
+        },
+        {
+          "id": "throw-0268",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 3,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:41:12.000Z"
+        },
+        {
+          "id": "throw-0269",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 4,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:41:36.000Z"
+        },
+        {
+          "id": "throw-0270",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 5,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:42:00.000Z"
+        },
+        {
+          "id": "throw-0271",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 6,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:42:24.000Z"
+        },
+        {
+          "id": "throw-0272",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 7,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:42:48.000Z"
+        },
+        {
+          "id": "throw-0273",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 8,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:43:12.000Z"
+        },
+        {
+          "id": "throw-0274",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 9,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:43:36.000Z"
+        },
+        {
+          "id": "throw-0275",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 10,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:44:00.000Z"
+        },
+        {
+          "id": "throw-0276",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 11,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:44:24.000Z"
+        },
+        {
+          "id": "throw-0277",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 12,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:44:48.000Z"
+        },
+        {
+          "id": "throw-0278",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0003",
+          "teamId": "team-0002",
+          "throwNumber": 13,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:45:12.000Z"
+        },
+        {
+          "id": "throw-0279",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0009",
+          "teamId": "team-0008",
+          "throwNumber": 14,
+          "isHit": false,
+          "timestamp": "2025-09-27T14:45:36.000Z"
+        },
+        {
+          "id": "throw-0280",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0004",
+          "teamId": "team-0002",
+          "throwNumber": 15,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:46:00.000Z"
+        },
+        {
+          "id": "throw-0281",
+          "matchId": "28e50f08-94b6-4a81-b0c1-8fb6a1418db4",
+          "playerId": "player-0010",
+          "teamId": "team-0008",
+          "throwNumber": 16,
+          "isHit": true,
+          "timestamp": "2025-09-27T14:46:24.000Z"
+        }
+      ],
+      "playerOrder": {
+        "team-0002": [
+          "player-0003",
+          "player-0004"
+        ],
+        "team-0008": [
+          "player-0009",
+          "player-0010"
+        ]
+      },
+      "startingTeamId": "team-0002",
+      "status": "completed",
+      "createdAt": "2025-09-27T14:40:00.000Z",
+      "updatedAt": "2025-09-27T14:47:24.000Z",
+      "penalties": []
+    }
+  ]
+}
