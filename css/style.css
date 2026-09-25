@@ -275,4 +275,4 @@ button.icon-inline { margin-left: auto; min-height: 32px; width: 32px; padding: 
 /* ---------- Logo ---------- */
 .brand { display: inline-flex; align-items: center; gap: .5rem; }
 .brand-logo { height: 38px; width: auto; padding: 2px 4px; border-radius: 8px; background: #f3f5f2; }
-@media (max-width: 600px) { .brand-logo { height: 32px; } }
+@media (max-width: 600px) { .brand-logo { height: 32px !important; } }
