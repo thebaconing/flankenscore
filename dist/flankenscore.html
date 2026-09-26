@@ -1282,6 +1282,13 @@ body.rules-open { overflow: hidden; }
   function pname(id) { var p = F.playerById(state, id); return p ? esc(p.name) : '–'; }
   function sideLabel(s) { return s === 'side_a' ? 'Links' : 'Rechts'; }
   function commit() { F.advance(state); Store.save(state); render(); }
+  // Beendetes Turnier, das zum Bearbeiten wieder geöffnet wurde: Würfe und Strafen beendeter Spiele sind änderbar
+  function editing() { return state.tournament.status === 'completed' && !!state.tournament.editing; }
+  // Nach Änderungen an einem beendeten Spiel Treffer/Würfe/Quote im Ergebnis nachziehen (Sieger bleibt)
+  function saveMatch(m) {
+    if (m.status === 'completed' && m.result) { m.result = F.buildResult(m, m.result.winnerTeamId); m.updatedAt = F.now(); }
+    Store.save(state); render();
+  }
   function go(hash) { if (location.hash === hash) render(); else location.hash = hash; }
   function today() { return new Date().toISOString().slice(0, 10); }
 
@@ -1446,7 +1453,10 @@ body.rules-open { overflow: hidden; }
     var t = state.tournament, open = openMatches(), pod = F.podium(state);
     var html = '<section class="card hero"><div><h1>' + esc(t.name) + '</h1>' +
       '<p class="muted">' + esc(t.date) + ' · ' + t.teamCount + ' Teams · ' + esc(F.describeMode(t.teamCount)) + '</p></div>' +
-      '<div class="phase">' + esc(F.phaseLabel(state)) + '</div>';
+      '<div class="phase">' + esc(editing() ? 'Turnier wird bearbeitet' : F.phaseLabel(state)) + '</div>';
+    if (t.status === 'completed') html += editing()
+      ? '<button data-action="close-edit" class="primary">Bearbeitung abschließen</button>'
+      : '<button data-action="open-edit" class="secondary">Turnier zum Bearbeiten öffnen</button>';
     if (open.length) html += '<button data-action="next-match" class="primary big">' +
       (open[0].status === 'in_progress' ? 'Laufendes Spiel fortsetzen' : 'Nächstes Spiel starten') + '</button>';
     html += '</section>';
@@ -1567,7 +1577,7 @@ body.rules-open { overflow: hidden; }
 
     if (m.status === 'not_started') return head + matchSetup(m);
     if (m.status === 'in_progress') return head + matchLive(m);
-    return head + matchSummary(m);
+    return head + matchSummary(m) + (editing() ? throwTable(m) : '');
   }
 
   function matchSetup(m) {
@@ -1667,9 +1677,9 @@ body.rules-open { overflow: hidden; }
     }
     return '<section class="card"><div class="grid2 panels">' + block(m.homeTeamId, r.homeTeamHits, r.homeTeamThrows, r.homeTeamQuote) +
       block(m.awayTeamId, r.awayTeamHits, r.awayTeamThrows, r.awayTeamQuote) + '</div>' +
-      '<h2>Verwarnungen &amp; Strafen</h2>' + penaltyList(m, false) +
+      '<h2>Verwarnungen &amp; Strafen</h2>' + penaltyList(m, editing()) +
       '<div class="actions"><button class="secondary" data-action="next-match">Nächstes Spiel</button>' +
-      (F.canReopen(state, m) ? '<button class="secondary" data-action="reopen" data-id="' + m.id + '">Ergebnis korrigieren</button>' : '') +
+      (F.canReopen(state, m) && (state.tournament.status !== 'completed' || editing()) ? '<button class="secondary" data-action="reopen" data-id="' + m.id + '">Ergebnis korrigieren</button>' : '') +
       '</div></section>';
   }
 
@@ -1811,14 +1821,14 @@ body.rules-open { overflow: hidden; }
     'throw-hit': function (d) {
       var m = F.matchById(state, d.id), e = m.throwSequence.find(function (x) { return x.id === d.throw; });
       F.editThrow(m, d.throw, { isHit: !e.isHit });
-      Store.save(state); render();
+      saveMatch(m);
     },
     'throw-del': function (d) {
       var m = F.matchById(state, d.id), e = m.throwSequence.find(function (x) { return x.id === d.throw; });
       if (!confirm('Wurf #' + e.throwNumber + ' von ' + F.playerById(state, e.playerId).name + ' löschen?')) return;
       F.deleteThrow(m, d.throw);
       ui.selectedThrower = null;
-      Store.save(state); render();
+      saveMatch(m);
     },
     'starting': function (d) { F.matchById(state, d.id).startingTeamId = d.team; render(); },
     'begin': function (d) {
@@ -1848,8 +1858,9 @@ body.rules-open { overflow: hidden; }
     },
     'pen-del': function (d) {
       if (!confirm('Eintrag löschen?')) return;
-      F.removePenalty(F.matchById(state, d.id), d.pen);
-      Store.save(state); render();
+      var m = F.matchById(state, d.id);
+      F.removePenalty(m, d.pen);
+      saveMatch(m);
     },
     'abort': function (d) {
       var m = F.matchById(state, d.id);
@@ -1870,7 +1881,17 @@ body.rules-open { overflow: hidden; }
     'reopen': function (d) {
       if (!confirm('Ergebnis zurücksetzen und Spiel wieder öffnen? Die Würfe bleiben erhalten, noch nicht begonnene Folgespiele werden neu ausgelost.')) return;
       var m = F.matchById(state, d.id);
+      delete state.tournament.editing;
       F.reopen(state, m);
+      Store.save(state); render();
+    },
+    'open-edit': function () {
+      if (!confirm('Turnier zum Bearbeiten öffnen? Würfe und Strafen der beendeten Spiele können dann korrigiert werden.')) return;
+      state.tournament.editing = true;
+      Store.save(state); render();
+    },
+    'close-edit': function () {
+      delete state.tournament.editing;
       Store.save(state); render();
     },
     'export': function () { Store.exportJson(state); },
@@ -1949,7 +1970,7 @@ body.rules-open { overflow: hidden; }
       var m = F.matchById(state, el.dataset.id), p = F.playerById(state, el.value);
       F.editThrow(m, el.dataset.throw, { playerId: p.id, teamId: p.teamId });
       ui.selectedThrower = null;
-      Store.save(state); render();
+      saveMatch(m);
     } else if (el.dataset.bind === 'thirdPlace') {
       draft.thirdPlace = el.checked;
     }

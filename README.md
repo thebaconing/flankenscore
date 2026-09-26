@@ -14,10 +14,10 @@ Mehr zur Architektur steht in [DESIGN.md](DESIGN.md).
 
 | Feld | Wert | Datei |
 |---|---|---|
-| App-Version (`versionName`) | **1.0** | `android/app/build.gradle` |
-| Android `versionCode` | **1** | `android/app/build.gradle` |
-| npm-Version | 1.0.0 | `package.json` |
-| Service-Worker-Cache | `flankenscore-v1` | `sw.js` |
+| App-Version (`versionName`) | **1.1** | `android/app/build.gradle` |
+| Android `versionCode` | **2** | `android/app/build.gradle` |
+| npm-Version | 1.1.0 | `package.json` |
+| Service-Worker-Cache | `flankenscore-v2` | `sw.js` |
 
 
 ---
@@ -163,10 +163,12 @@ Die Historie (Tabelle unten) wird **nicht** automatisch ergänzt, dort bitte ein
 
 ## Versionshistorie
 
-Aktuell: **1.0 (versionCode 1)**. Die Version wird bei jedem Build automatisch erhöht.
+Aktuell: **1.1 (versionCode 2)**. Die Version wird bei jedem Build automatisch erhöht.
 
 | Datum | Änderungen |
 |---|---|
+| 2026-09-26 | Beendetes Turnier zum Bearbeiten öffnen (Würfe und Strafen korrigieren) und wieder abschließen |
+| 2026-09-26 | Regelwerk jederzeit als Overlay aufrufbar, das laufende Spiel bleibt unverändert |
 | 2026-09-26 | Build: Version wird bei jedem Build automatisch erhöht (+0.1 / versionCode +1) |
 | 2026-09-26 | Dokumentation: Designdokument aktualisiert, README mit Build-Anleitung |
 | 2026-09-26 | Startfehler-Anzeige: nur Fehler beim Start melden, keine späteren (fremden) Fehler |

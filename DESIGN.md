@@ -567,13 +567,15 @@ Diese Farben bitte als CSS-Variablen / Tailwind-Theme übernehmen.
 
 ## 11. Version & Historie
 
-**App-Version:** 1.0 (Android `versionCode` 1)  
+**App-Version:** 1.1 (Android `versionCode` 2)  
 **Dokumentversion:** 1.1  
 **Erstellt:** 2026-09-25  
 **Status:** Umgesetzt
 
 | Datum | Änderungen |
 |---|---|
+| 2026-09-26 | Beendetes Turnier zum Bearbeiten öffnen (Würfe und Strafen korrigieren) und wieder abschließen |
+| 2026-09-26 | Regelwerk jederzeit als Overlay aufrufbar, das laufende Spiel bleibt unverändert |
 | 2026-09-26 | Build: Version wird bei jedem Build automatisch erhöht (+0.1 / versionCode +1) |
 | 2026-09-26 | Dokumentation: Designdokument aktualisiert, README mit Build-Anleitung |
 | 2026-09-26 | Startfehler-Anzeige: nur Fehler beim Start melden, keine späteren (fremden) Fehler |

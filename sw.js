@@ -1,7 +1,7 @@
 /* Flankenscore – Service Worker für die Offline-Nutzung als Web-App (GitHub Pages / iPad).
  * Liefert sofort aus dem Cache und lädt im Hintergrund nach; Änderungen sind damit
  * beim nächsten Start aktiv. Bei neuen Dateien in APP_FILES die VERSION erhöhen. */
-var VERSION = 'flankenscore-v1';
+var VERSION = 'flankenscore-v2';
 var APP_FILES = [
   './', 'index.html', 'css/style.css', 'js/logic.js', 'js/store.js', 'js/app.js',
   'regelwerk.html', 'manifest.webmanifest', 'assets/flankenscore-logo.svg',
