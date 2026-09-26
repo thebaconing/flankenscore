@@ -51,7 +51,7 @@ Der Repo-Root ist die Web-App. Für GitHub Pages unter *Settings → Pages* als 
 
 Auf iPad/iPhone die Seite in Safari öffnen und mit *Teilen → Zum Home-Bildschirm* installieren. Danach läuft sie offline.
 
-**Wichtig bei Änderungen:** In [sw.js](sw.js) die `VERSION` erhöhen (z.B. `flankenscore-v2`), sonst bleibt bei Nutzern die alte Version im Cache. Neue Dateien zusätzlich in `APP_FILES` eintragen.
+**Wichtig bei Änderungen:** Die `VERSION` in [sw.js](sw.js) wird von `build.py` automatisch erhöht. Ohne neuen Build bleibt bei Nutzern die alte Version im Cache. Neue Dateien zusätzlich in `APP_FILES` eintragen.
 
 ## 3. Einzeldatei bauen
 
@@ -118,9 +118,28 @@ npm run android:open   # öffnet android/ in Android Studio
 
 Ohne `keystore.properties` wird die Release-Variante unsigniert gebaut.
 
-Vor einem neuen Release in [android/app/build.gradle](android/app/build.gradle) `versionCode` (+1) und `versionName` erhöhen.
+Die Version wird bei jedem Build automatisch erhöht (siehe „Automatische Versionierung“).
 
 ---
+
+## Automatische Versionierung
+
+Jeder Aufruf von `build.py` (also auch `npm run build` und alle `android:*`-Skripte außer `android:open`) erhöht die Version:
+
+| Wert | Änderung | Beispiel |
+|---|---|---|
+| `versionName` | +0.1 | 1.0 → 1.1 |
+| `versionCode` | +1 | 1 → 2 |
+| Service-Worker-Cache | +1 | `flankenscore-v1` → `flankenscore-v2` |
+| `package.json` | folgt `versionName` | 1.1.0 |
+
+Die neuen Werte werden automatisch in diese README und in DESIGN.md eingetragen. Ohne Erhöhung bauen:
+
+```bash
+python build.py --no-bump
+```
+
+Die Historie (Tabelle unten) wird **nicht** automatisch ergänzt, dort bitte eine Zeile zur neuen Version eintragen.
 
 ## Übersicht der npm-Skripte
 
@@ -135,19 +154,20 @@ Vor einem neuen Release in [android/app/build.gradle](android/app/build.gradle) 
 ## Checkliste nach Code-Änderungen
 
 - [ ] `python build.py` ausführen und `dist/flankenscore.html` committen
-- [ ] `VERSION` in `sw.js` erhöhen (Web-App)
+- [ ] Web-App ohne Build geändert? Dann `VERSION` in `sw.js` von Hand erhöhen
 - [ ] Bei neuen Dateien: `APP_FILES` in `sw.js` ergänzen
-- [ ] Für ein Android-Release: `versionCode`/`versionName` erhöhen, `npm run android:release`
+- [ ] Für ein Android-Release: `npm run android:release`
 - [ ] Versionstabelle und Historie in README.md und DESIGN.md aktualisieren
 
 ---
 
 ## Versionshistorie
 
-Aktuell: **1.0 (versionCode 1)**. Alle bisherigen Änderungen gehören noch zu dieser Version.
+Aktuell: **1.0 (versionCode 1)**. Die Version wird bei jedem Build automatisch erhöht.
 
 | Datum | Änderungen |
 |---|---|
+| 2026-09-26 | Build: Version wird bei jedem Build automatisch erhöht (+0.1 / versionCode +1) |
 | 2026-09-26 | Dokumentation: Designdokument aktualisiert, README mit Build-Anleitung |
 | 2026-09-26 | Startfehler-Anzeige: nur Fehler beim Start melden, keine späteren (fremden) Fehler |
 | 2026-09-26 | iPad/iPhone: installierbare Web-App (Manifest, Service Worker, App-Icons) |

@@ -574,6 +574,7 @@ Diese Farben bitte als CSS-Variablen / Tailwind-Theme übernehmen.
 
 | Datum | Änderungen |
 |---|---|
+| 2026-09-26 | Build: Version wird bei jedem Build automatisch erhöht (+0.1 / versionCode +1) |
 | 2026-09-26 | Dokumentation: Designdokument aktualisiert, README mit Build-Anleitung |
 | 2026-09-26 | Startfehler-Anzeige: nur Fehler beim Start melden, keine späteren (fremden) Fehler |
 | 2026-09-26 | iPad/iPhone: installierbare Web-App (Manifest, Service Worker, App-Icons) |

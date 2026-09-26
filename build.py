@@ -2,13 +2,19 @@
 
 Zusätzlich www/index.html als Web-Verzeichnis für die Android-App (Capacitor).
 
-Aufruf: python build.py
+Bei jedem Build wird die Version erhöht (versionName +0.1, versionCode +1, Service-Worker-Cache +1)
+und in package.json, README.md und DESIGN.md eingetragen.
+
+Aufruf: python build.py            (mit Versionserhöhung)
+        python build.py --no-bump  (ohne Versionserhöhung)
 """
 import base64
 import io
 import mimetypes
 import os
 import re
+import sys
+from decimal import Decimal
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'dist', 'flankenscore.html')
@@ -48,6 +54,38 @@ def inline_js(match):
         raise SystemExit('Fehler: ' + match.group(1) + ' enthält "</script" und kann nicht eingebettet werden.')
     return '<script>\n' + code + '\n</script>'
 
+
+def sub_file(rel, pattern, repl, count=1):
+    text = read(rel)
+    new, n = re.subn(pattern, repl, text, count=count)
+    if not n:
+        raise SystemExit('Fehler: Versionsangabe nicht gefunden in ' + rel + ': ' + pattern)
+    with io.open(os.path.join(ROOT, rel), 'w', encoding='utf-8', newline='\n') as f:
+        f.write(new)
+
+
+def bump_version():
+    gradle = read('android/app/build.gradle')
+    code = int(re.search(r'versionCode (\d+)', gradle).group(1)) + 1
+    name = str(Decimal(re.search(r'versionName "([\d.]+)"', gradle).group(1)) + Decimal('0.1'))
+    sw = int(re.search(r"flankenscore-v(\d+)", read('sw.js')).group(1)) + 1
+
+    sub_file('android/app/build.gradle', r'versionCode \d+', 'versionCode ' + str(code))
+    sub_file('android/app/build.gradle', r'versionName "[\d.]+"', 'versionName "' + name + '"')
+    sub_file('sw.js', r"flankenscore-v\d+", 'flankenscore-v' + str(sw))
+    sub_file('package.json', r'"version": "[\d.]+"', '"version": "' + name + '.0"')
+    sub_file('README.md', r'(App-Version \(`versionName`\) \| \*\*)[\d.]+', r'\g<1>' + name)
+    sub_file('README.md', r'(Android `versionCode` \| \*\*)\d+', r'\g<1>' + str(code))
+    sub_file('README.md', r'(npm-Version \| )[\d.]+', r'\g<1>' + name + '.0')
+    sub_file('README.md', r'(Service-Worker-Cache \| `flankenscore-v)\d+', r'\g<1>' + str(sw))
+    sub_file('README.md', r'(Aktuell: \*\*)[\d.]+ \(versionCode \d+\)', r'\g<1>' + name + ' (versionCode ' + str(code) + ')')
+    sub_file('DESIGN.md', r'(\*\*App-Version:\*\* )[\d.]+ \(Android `versionCode` \d+\)',
+             r'\g<1>' + name + ' (Android `versionCode` ' + str(code) + ')')
+    print('Version: ' + name + ' (versionCode ' + str(code) + ', Cache flankenscore-v' + str(sw) + ')')
+
+
+if '--no-bump' not in sys.argv:
+    bump_version()
 
 html = read('index.html')
 # Web-App-Teile (Manifest, Service Worker) gibt es nur auf GitHub Pages, nicht in Einzeldatei und Android-App
