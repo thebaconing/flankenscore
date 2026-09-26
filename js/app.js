@@ -72,6 +72,7 @@
     nav.innerHTML = links.map(function (l) {
       return '<a href="#/' + l[0] + '" class="' + (route === l[0] ? 'active' : '') + '">' + l[1] + '</a>';
     }).join('') +
+      '<a href="#" data-action="rules" title="Regelwerk (jederzeit, das Spiel läuft weiter)">Regeln</a>' +
       '<details class="menu"><summary aria-label="Menü">⋯</summary><div>' +
       '<button data-action="go" data-to="#/career">Gesamtstatistik</button>' +
       (state ? '<button data-action="export">JSON exportieren</button>' : '') +
@@ -635,6 +636,35 @@
     }
   };
 
+  /* ---------- Regelwerk-Overlay ---------- */
+  // Öffnet sich über der App, ohne Route oder Spielstand zu ändern; die Seite bleibt beim
+  // Schließen geladen, damit Scrollposition und Suche beim nächsten Öffnen erhalten sind.
+  var rules = document.getElementById('rulesOverlay'), rulesFrame = document.getElementById('rulesFrame');
+  var rulesLoaded = false;
+  actions.rules = function () {
+    if (!rules.hidden) return;
+    rules.hidden = false;
+    document.body.classList.add('rules-open');
+    // location.replace statt src: das Laden erzeugt keinen History-Eintrag, sonst würde
+    // history.back() beim Schließen den iframe auf die leere Seite zurücksetzen
+    if (!rulesLoaded) { rulesFrame.contentWindow.location.replace(rulesFrame.dataset.src); rulesLoaded = true; }
+    // Eigener History-Eintrag (gleiche URL, kein hashchange): Zurück-Taste von Android/Browser schließt das Overlay
+    history.pushState({ rules: true }, '');
+    rulesFrame.focus();
+  };
+  function hideRules() {
+    rules.hidden = true;
+    document.body.classList.remove('rules-open');
+  }
+  function closeRules() {
+    if (rules.hidden) return;
+    hideRules();
+    if (history.state && history.state.rules) history.back();
+  }
+  window.addEventListener('popstate', function () { if (!rules.hidden) hideRules(); });
+  window.addEventListener('message', function (e) { if (e.data === 'flankenscore:close-rules') closeRules(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeRules(); });
+
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-action]');
     if (!el || el.tagName === 'INPUT') return;
@@ -690,7 +720,7 @@
 
   // Tastatur-Kürzel im Spiel: T = Treffer, D/Leertaste = daneben, Z = zurück
   document.addEventListener('keydown', function (e) {
-    if (!document.body.classList.contains('in-match') || /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+    if (!document.body.classList.contains('in-match') || !rules.hidden || /INPUT|TEXTAREA/.test(e.target.tagName)) return;
     var map = { t: '[data-action=throw][data-hit="1"]', d: '[data-action=throw][data-hit="0"]', z: '[data-action=undo]' };
     var sel = map[e.key.toLowerCase()];
     var btn = sel && app.querySelector(sel);

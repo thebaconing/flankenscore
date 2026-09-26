@@ -97,6 +97,14 @@ html = re.sub(r'<script src="([^"]+)"></script>', inline_js, html)
 html = re.sub(r'(src|href)="(assets/[^"]+)"', inline_asset, html)
 html = re.sub(r"""url\((["']?)(\.\./)?(assets/[^"')]+)\1\)""", lambda m: 'url("' + data_uri(m.group(3)) + '")', html)
 
+# Regelwerk als data:-URI einbetten (Anker-Links funktionieren darin, anders als bei srcdoc)
+rules = read('regelwerk.html')
+rules = re.sub(r'\s*<link rel="icon"[^>]*>', '', rules)
+rules_uri = 'data:text/html;charset=utf-8;base64,' + base64.b64encode(rules.encode('utf-8')).decode('ascii')
+html, n = re.subn(r'data-src="regelwerk.html"', 'data-src="' + rules_uri + '"', html)
+if not n:
+    raise SystemExit('Fehler: Regelwerk-Platzhalter nicht gefunden in index.html.')
+
 if re.search(r'(href|src)="(css|js|assets)/', html):
     raise SystemExit('Fehler: Nicht alle lokalen Dateien wurden eingebettet.')
 

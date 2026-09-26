@@ -331,3 +331,10 @@ body { padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom,
   .topbar { padding-top: calc(.5rem + var(--safe-area-inset-top, env(safe-area-inset-top, 0px))); }
 }
 @media print { .topbar, body { padding-top: 0; padding-bottom: 0; } }
+
+/* Regelwerk-Overlay (über der App, Spielstand bleibt erhalten) */
+.rules-overlay { position: fixed; inset: 0; z-index: 1000; background: var(--bg, #f3f5f2); }
+.rules-overlay[hidden] { display: none; }
+.rules-overlay iframe { width: 100%; height: 100%; border: 0; display: block; }
+body.rules-open { overflow: hidden; }
+@media print { .rules-overlay { display: none !important; } }

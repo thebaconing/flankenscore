@@ -4,7 +4,7 @@
 var VERSION = 'flankenscore-v1';
 var APP_FILES = [
   './', 'index.html', 'css/style.css', 'js/logic.js', 'js/store.js', 'js/app.js',
-  'manifest.webmanifest', 'assets/flankenscore-logo.svg',
+  'regelwerk.html', 'manifest.webmanifest', 'assets/flankenscore-logo.svg',
   'assets/icons/apple-touch-icon.png', 'assets/icons/icon-192.png', 'assets/icons/icon-512.png'
 ];
 

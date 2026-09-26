@@ -36,6 +36,10 @@
         String(msg).replace(/</g, '&lt;') + ' (Zeile ' + line + ')</p><p>Bitte diese Meldung weitergeben.</p></section>';
     };
   </script>
+  <!-- Regelwerk als Overlay: liegt über der App, das laufende Spiel bleibt unverändert -->
+  <div id="rulesOverlay" class="rules-overlay" hidden>
+    <iframe id="rulesFrame" title="Regelwerk" data-src="regelwerk.html"></iframe>
+  </div>
   <input type="file" id="importFile" accept="application/json,.json" hidden>
   <script src="js/logic.js"></script>
   <script src="js/store.js"></script>
