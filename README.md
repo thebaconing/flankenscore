@@ -10,6 +10,16 @@ Flankenscore besteht aus einer Web-App ohne Framework (`index.html`, `css/`, `js
 
 Mehr zur Architektur steht in [DESIGN.md](DESIGN.md).
 
+## Aktuelle Version
+
+| Feld | Wert | Datei |
+|---|---|---|
+| App-Version (`versionName`) | **1.0** | `android/app/build.gradle` |
+| Android `versionCode` | **1** | `android/app/build.gradle` |
+| npm-Version | 1.0.0 | `package.json` |
+| Service-Worker-Cache | `flankenscore-v1` | `sw.js` |
+
+
 ---
 
 ## Voraussetzungen
@@ -128,3 +138,22 @@ Vor einem neuen Release in [android/app/build.gradle](android/app/build.gradle) 
 - [ ] `VERSION` in `sw.js` erhöhen (Web-App)
 - [ ] Bei neuen Dateien: `APP_FILES` in `sw.js` ergänzen
 - [ ] Für ein Android-Release: `versionCode`/`versionName` erhöhen, `npm run android:release`
+- [ ] Versionstabelle und Historie in README.md und DESIGN.md aktualisieren
+
+---
+
+## Versionshistorie
+
+Aktuell: **1.0 (versionCode 1)**. Alle bisherigen Änderungen gehören noch zu dieser Version.
+
+| Datum | Änderungen |
+|---|---|
+| 2026-09-26 | Dokumentation: Designdokument aktualisiert, README mit Build-Anleitung |
+| 2026-09-26 | Startfehler-Anzeige: nur Fehler beim Start melden, keine späteren (fremden) Fehler |
+| 2026-09-26 | iPad/iPhone: installierbare Web-App (Manifest, Service Worker, App-Icons) |
+| 2026-09-26 | Android: Release-Signierung über `keystore.properties` |
+| 2026-09-26 | Mehrere Turniere mit Verlauf, Gesamtstatistik, native Sicherung, Android-App (Capacitor) |
+| 2026-09-25 | Verwarnungen & Strafen mit Mahn-Konto, Anpassungen für die mobile Ansicht |
+| 2026-09-25 | Laufendes Spiel abbrechen, Würfe nachträglich bearbeiten |
+| 2026-09-25 | Logo eingebunden und im Build eingebettet |
+| 2026-09-25 | Erste Version: Turnierlogik, Live-Tracking, Statistiken, Einzeldatei-Build |

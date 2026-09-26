@@ -565,7 +565,21 @@ Diese Farben bitte als CSS-Variablen / Tailwind-Theme übernehmen.
 
 ---
 
-**Version:** 1.1  
+## 11. Version & Historie
+
+**App-Version:** 1.0 (Android `versionCode` 1)  
+**Dokumentversion:** 1.1  
 **Erstellt:** 2026-09-25  
-**Aktualisiert:** 2026-09-26 – Strafen, Korrekturen, mehrere Turniere, Gesamtstatistik, Android-App, iPad-Web-App  
 **Status:** Umgesetzt
+
+| Datum | Änderungen |
+|---|---|
+| 2026-09-26 | Dokumentation: Designdokument aktualisiert, README mit Build-Anleitung |
+| 2026-09-26 | Startfehler-Anzeige: nur Fehler beim Start melden, keine späteren (fremden) Fehler |
+| 2026-09-26 | iPad/iPhone: installierbare Web-App (Manifest, Service Worker, App-Icons) |
+| 2026-09-26 | Android: Release-Signierung über `keystore.properties` |
+| 2026-09-26 | Mehrere Turniere mit Verlauf, Gesamtstatistik, native Sicherung, Android-App (Capacitor) |
+| 2026-09-25 | Verwarnungen & Strafen mit Mahn-Konto, Anpassungen für die mobile Ansicht |
+| 2026-09-25 | Laufendes Spiel abbrechen, Würfe nachträglich bearbeiten |
+| 2026-09-25 | Logo eingebunden und im Build eingebettet |
+| 2026-09-25 | Erste Version: Turnierlogik, Live-Tracking, Statistiken, Einzeldatei-Build |
