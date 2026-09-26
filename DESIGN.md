@@ -46,6 +46,15 @@ Siehe Tabelle unten. Das System wählt automatisch den Modus basierend auf der T
 - **Paarungen:** Automatisch nach Standard-K.o.-Baum (1. vs. 2., 3. vs. 4., etc.)
 - **Lucky Loser (9, 11, 12 Teams):** Beste Verlierer der Vorrunde rücken ein, wenn nicht genug Plätze durch reguläre Aufstiegskriterien gefüllt sind
 
+### 1.4 Umsetzungsdetails
+
+- **Gruppenauslosung:** Teams werden zufällig auf die Gruppen verteilt.
+- **Spielplan:** Round Robin nach Kreis-Methode; Spieltage werden gruppenübergreifend verschränkt, damit alle Gruppen parallel spielen. Bei Hin- & Rückrunde werden im Rückspiel die Seiten getauscht.
+- **Setzliste für die K.o.-Phase:** Gruppenplatz, dann Punkte pro Spiel (vergleichbar bei ungleich großen Gruppen, z.B. 4/4/3), Quote, Name. Paarungen nach Standard-Setzbaum (1 und 2 treffen frühestens im Finale). Teams derselben Gruppe werden in Runde 1 nach Möglichkeit getrennt.
+- **Spiel um Platz 3:** Beim Anlegen per Schalter wählbar (Standard je Modus). Bei 4 Teams ohne Halbfinale: Gruppendritter gegen -vierter.
+- **Best of 5 (2 Teams):** Nach jedem Spiel wird automatisch das nächste mit getauschtem Heimrecht erzeugt, bis ein Team 3 Siege hat.
+- **Fortschritt:** Nach jeder Ergebnisänderung erzeugt `advance()` automatisch die nächste Runde bzw. beendet das Turnier.
+
 ---
 
 ## 2. Datenmodelle
@@ -67,6 +76,17 @@ Siehe Tabelle unten. Das System wählt automatisch den Modus basierend auf der T
   createdAt: timestamp
   updatedAt: timestamp
 }
+```
+
+**Umsetzung:** Gespeichert wird flach als `{ tournament, teams, players, matches }`. Groups und KnockoutStages liegen im `tournament`, Matches verweisen per `groupId` / `knockoutStageId`. Zusätzliche Felder:
+
+```
+tournament.config:   { groups: number[], legs: 1|2, qualifiers, series, thirdPlace }
+tournament.settings: { autoSwitch: boolean }
+group.teamIds:       UUID[]            // statt eingebetteter Teams
+knockoutStage:       { kind: 'main' | 'third' | 'series', size: number }
+team.players:        UUID[]            // Spieler-IDs
+team.seed:           number | null     // Setzplatz in der K.o.-Phase
 ```
 
 ### 2.2 Team
@@ -154,6 +174,17 @@ Siehe Tabelle unten. Das System wählt automatisch den Modus basierend auf der T
 }
 ```
 
+**Zusätzliche Match-Felder (umgesetzt):**
+
+```
+matchday?: number                       // Spieltag in der Gruppenphase
+slot?: number                           // Position im K.o.-Baum / in der Serie
+label?: string                          // z.B. "Spiel 3" (Best of 5)
+playerOrder: { [teamId]: UUID[] }       // Wurfreihenfolge je Team
+startingTeamId: UUID                    // Team mit dem ersten Wurf
+penalties: Penalty[]                    // siehe 2.9
+```
+
 ### 2.7 ThrowEntry
 
 ```
@@ -177,6 +208,22 @@ Siehe Tabelle unten. Das System wählt automatisch den Modus basierend auf der T
   stageName: string  // z.B. "Viertelfinale"
   matches: Match[]
   createdAt: timestamp
+}
+```
+
+
+### 2.9 Penalty (Verwarnungen & Strafen)
+
+```
+{
+  id: UUID
+  matchId: UUID
+  type: 'warning' | 'skip_player' | 'skip_team' | 'strafhalbe'
+  teamId: UUID
+  playerId: UUID | null   // null bei Team-Strafen (warning, skip_team)
+  beforeThrow: number     // Anzahl Würfe zum Zeitpunkt der Strafe
+  timestamp: timestamp
+  causedBy?: UUID         // automatische Folgestrafe → auslösende Verwarnung
 }
 ```
 
@@ -226,6 +273,31 @@ Ansicht während Match:
 │ Gewinner: [Team A / B]  │
 └─────────────────────────┘
 ```
+
+### 3.4 Umgesetzter Match-Ablauf
+
+1. **Vorbereitung:** Seiten (Links/Rechts) werden vorgeschlagen, beginnendes Team und Spieler-Reihenfolge je Team werden gewählt.
+2. **Live:** Teams werfen abwechselnd, innerhalb eines Teams wird rotiert („Wechsel automatisch“, Einstellung pro Turnier). Bei ausgeschaltetem Auto-Wechsel kann der Werfer frei gewählt werden.
+3. **Korrekturen:**
+   - „Letzte Eingabe zurücknehmen“ (Wurf oder Strafe, je nachdem was zuletzt kam)
+   - Wurfliste: Spieler nachträglich ändern, Treffer/Daneben umschalten, Wurf löschen (Nummern und Strafen-Zeitpunkte rücken nach)
+   - Laufendes Spiel abbrechen: zurück auf „offen“, Würfe und Strafen werden verworfen, Reihenfolge bleibt als Vorauswahl
+4. **Spielende:** Gewinner per Button (mit Bestätigung), Ergebnis wird aus den Würfen berechnet.
+5. **Ergebnis korrigieren:** Ein beendetes Spiel kann wieder geöffnet werden, solange kein davon abhängiges Spiel begonnen hat. Noch nicht begonnene Folgerunden werden dabei verworfen und neu ausgelost.
+
+### 3.5 Verwarnungen & Strafen
+
+| Typ | Ziel | Wirkung |
+|---|---|---|
+| ⚠ Verwarnung | Team | Zählt aufs Mahn-Konto des Teams |
+| ⏸ Aussetzen | Spieler | Spieler darf beim nächsten Treffer seines Teams nicht trinken |
+| ⏸⏸ Teamaussetzen | Team | Ganzes Team darf beim nächsten eigenen Treffer nicht trinken |
+| 🍺 Strafhalbe | Spieler | Wird nur gezählt |
+
+- **Mahn-Konto:** 4 Verwarnungen → automatisches Teamaussetzen; 8 Verwarnungen → Strafhalbe für jedes Teammitglied, danach steht das Konto wieder bei 0.
+- Automatische Folgestrafen hängen an der auslösenden Verwarnung (`causedBy`) und verschwinden mit ihr; beim Löschen einer Verwarnung werden spätere Folgestrafen neu berechnet.
+- Offene Trinkverbote werden an den Spielern als Badge angezeigt und gelten als abgegolten, sobald das Team das nächste Mal trifft.
+- Strafen erscheinen in Team- und Spielerstatistik, der Gesamtstatistik und im CSV-Export.
 
 ---
 
@@ -307,6 +379,13 @@ Jedes Team hat einen Seitenzähler:
 - Sortierung nach Quote (mit Mindest-Wurfanzahl, z.B. ≥ 5 Würfe)
 - Sekundär: Treffer absolut
 
+### 5.5 Gesamtstatistik (turnierübergreifend)
+
+- Fasst alle gespeicherten Turniere zusammen; Spieler und Teams werden über den **Namen** (ohne Groß-/Kleinschreibung) zusammengeführt, da IDs pro Turnier neu vergeben werden.
+- **Spieler:** Turniere, Titel, Würfe, Treffer, Quote, Spiele, Siege, Strafen; Sortierung wie 5.4 (Mindestwürfe einstellbar)
+- **Teams:** Titel ↓, Siege ↓, Siegquote ↓, Name
+- Titel = Platz 1, Podium = Platz 1–3 (aus Finale / Spiel um Platz 3 bzw. Best of 5)
+
 ---
 
 ## 6. UI/UX – Screens
@@ -361,45 +440,73 @@ Jedes Team hat einen Seitenzähler:
 - Finale Tabellen als PDF/Print
 - Spielerstatistiken exportierbar
 
+### 6.7 Turniere (Verlauf) – umgesetzt
+
+- Liste aller gespeicherten Turniere (neueste zuerst) mit Status, Datum, Teamanzahl und Sieger
+- Aktionen: Öffnen, Export, Löschen (mit Bestätigung); Neues Turnier; Import
+
+### 6.8 Navigation – umgesetzt
+
+- Hauptleiste: Übersicht, Gruppen, K.o. (bzw. „Spiele“ bei Best of 5), Statistik, Turniere
+- ⋯-Menü: Gesamtstatistik, JSON exportieren/importieren, Drucken/PDF (nicht in der Android-App), Spielerstatistik (CSV), Neues Turnier
+- Während eines Spiels: kompakte Match-Ansicht (`body.in-match`)
+
 ---
 
-## 7. Technische Anforderungen
+## 7. Technische Umsetzung
 
-### 7.1 Tech Stack
+### 7.1 Tech Stack (umgesetzt)
 
-- **Frontend:** React (oder Vue.js)
-- **Storage:** localStorage (lokal im Browser, keine Server)
-- **State Management:** Context API oder Zustand
-- **Styling:** CSS oder Tailwind
+- **Frontend:** Vanilla JavaScript (ES5, kein Framework, kein Bundler), Hash-Routing (`#/`, `#/groups`, `#/ko`, `#/stats`, `#/match/<id>`, `#/setup`, `#/history`, `#/career`)
+- **Module:**
+  - `js/logic.js` – reine Turnierlogik ohne DOM (`window.Flanken`)
+  - `js/store.js` – Persistierung, Import/Export (`window.FlankenStore`)
+  - `js/app.js` – Views, Navigation, Event-Handling
+- **Styling:** `css/style.css` mit CSS-Variablen, Dark Mode über `prefers-color-scheme`, Druck-Styles
+- **Auslieferungsformen:** siehe 7.5 und `README.md`
 
-### 7.2 Persistierung
+### 7.2 Persistierung (mehrere Turniere)
 
-Alle Daten in `localStorage` unter Schlüssel `flankenscore_tournament`:
-```json
-{
-  "tournament": { ... },
-  "teams": [ ... ],
-  "matches": [ ... ],
-  "players": [ ... ]
-}
-```
+Jedes Turnier liegt unter einem eigenen `localStorage`-Schlüssel, der Verlauf bleibt erhalten:
+
+| Schlüssel | Inhalt |
+|---|---|
+| `flankenscore_index` | Array aller Turnier-IDs |
+| `flankenscore_active` | ID des aktuell geöffneten Turniers (leer = keins) |
+| `flankenscore_t_<id>` | Kompletter Turnierstand `{ tournament, teams, players, matches }` |
+| `flankenscore_tournament` | Altes Einzel-Format; wird beim Start automatisch migriert und gelöscht |
 
 **Features:**
-- Auto-Save nach jeder Änderung
-- Export-Button: JSON-Download
-- Import-Button: JSON hochladen (Dateiupload)
+- Auto-Save nach jeder Änderung (nur das aktive Turnier wird geschrieben)
+- Turnierverwaltung („Turniere“): öffnen, exportieren, löschen; „Neues Turnier“ lässt das alte im Verlauf
+- Export: JSON-Download (Browser) bzw. Teilen-Menü (Android, über Filesystem + Share-Plugin)
+- Import: JSON-Datei; vorhandenes Turnier mit gleicher ID wird nach Rückfrage ersetzt
+- CSV-Export der Spielerstatistik (Turnier) und der Gesamtstatistik
+- **Android:** Jede Änderung wird zusätzlich in den nativen `Preferences` gespiegelt. Leert Android den WebView-Speicher, stellt `FlankenStore.ready()` die Daten beim Start wieder her.
 
 ### 7.3 Offline-Readiness
 
-App muss komplett offline funktionieren (kein Backend nötig).
+- Einzeldatei `dist/flankenscore.html` läuft komplett offline (CSS, JS, Logo, Icons eingebettet)
+- Web-App (GitHub Pages): Service Worker `sw.js` cached alle App-Dateien (stale-while-revalidate). Bei neuen Dateien `APP_FILES` ergänzen und `VERSION` erhöhen.
+- Android-App: alle Dateien liegen in der APK
 
 ### 7.4 Mobile-Freundlichkeit
 
-- Responsive Design (Tablet & Smartphone)
-- Touch-freundliche Buttons
-- Landscape-Mode für Match-Tracking
+- Responsive Design (Breakpoints 600 px / 380 px), kompakte Navigation mit ⋯-Menü
+- Landscape-Layout für Match-Tracking auf niedrigen Displays
+- Touch-freundliche Buttons, Safe-Area-Unterstützung (`viewport-fit=cover`)
+- **iPad/iPhone:** Installierbar als Web-App („Zum Home-Bildschirm“) über `manifest.webmanifest`, Apple-Touch-Icon und Standalone-Meta-Tags
+- Startfehler-Anzeige: Läuft kein JavaScript (z.B. Datei-Vorschau in Mail/Dateien-App), erscheint ein Hinweis; Fehler beim Start werden sichtbar gemeldet, spätere (fremde) Fehler nicht
 
----
+### 7.5 Auslieferung
+
+| Variante | Quelle | Besonderheiten |
+|---|---|---|
+| Web-App / PWA | Repo-Root (`index.html` + `css/`, `js/`, `assets/`) | Manifest + Service Worker (nur über HTTPS) |
+| Einzeldatei | `dist/flankenscore.html` (via `build.py`) | Alles inline, ohne PWA-Teile (`data-pwa` wird entfernt) |
+| Android-App | Capacitor, `www/index.html` (via `build.py`) | App-ID `de.flankenscore.app`, Plugins: Preferences, Filesystem, Share |
+
+Build-Anleitung: siehe [`README.md`](README.md).
 
 ## 8. User Flow – Beispiel
 
@@ -426,14 +533,18 @@ App muss komplett offline funktionieren (kein Backend nötig).
 - [ ] Foto/Profilbild pro Spieler?
 - [ ] Live-Link (QR-Code) zum Anschauen für Zuschauer?
 - [ ] Musikintegration (Spotify während Match)?
-- [ ] Dark Mode?
-- [ ] Turniere speichern/archivieren (LocalStorage-Export)?
+- [x] Dark Mode (automatisch über Systemeinstellung)
+- [x] Turniere speichern/archivieren (Verlauf, JSON-Export/-Import)
+- [x] Android-App (Capacitor)
+- [x] iPad/iPhone als installierbare Web-App
+- [ ] Veröffentlichung im Play Store
 
 ---
 
 ## 10. Branding & Logo
 
-- **Logo-Datei:** `assets/flankenscore-logo.svg` (liegt neben dieser DESIGN.md, beim Setup nach `public/` bzw. `src/assets/` kopieren)
+- **Logo-Datei:** `assets/flankenscore-logo.svg` (wird beim Build als data:-URI eingebettet)
+- **App-Icons:** `assets/icons/` (192/512 px, maskable, Apple-Touch-Icon); Android-Icons und Splash unter `android/app/src/main/res/`
 - **Motiv:** Frankenstein wirft im Profil in geduckter Boule-Haltung ein in Zewa gewickeltes, mit Panzertape umwickeltes Wurfgeschoss (Grabkerze). Im Hintergrund steht eine 1,5-l-PET-Wasserflasche mit wenig Wasser.
 - **Einsatz:** Header der Startseite / Dashboard, nicht als Favicon gedacht. Für ein Favicon bei Bedarf einen vereinfachten Ausschnitt nutzen.
 - **Schriftzug:** "FLANKEN" in Grün, "SCORE" in Rot, fette, schwere Sans-Serif (z.B. Arial Black oder eine Google-Font wie "Archivo Black").
@@ -454,6 +565,7 @@ Diese Farben bitte als CSS-Variablen / Tailwind-Theme übernehmen.
 
 ---
 
-**Version:** 1.0 Draft  
+**Version:** 1.1  
 **Erstellt:** 2026-09-25  
-**Status:** Ready für Claude Code
+**Aktualisiert:** 2026-09-26 – Strafen, Korrekturen, mehrere Turniere, Gesamtstatistik, Android-App, iPad-Web-App  
+**Status:** Umgesetzt
