@@ -167,6 +167,7 @@ Aktuell: **1.2 (versionCode 3)**. Die Version wird bei jedem Build automatisch e
 
 | Datum | Änderungen |
 |---|---|
+| 2026-09-28 | Android: eigenes App-Icon (grün, „Flanken/score“ zweizeilig) |
 | 2026-09-28 | **Release 1.2** (versionCode 3) mit den folgenden Änderungen |
 | 2026-09-28 | Regelwerk in der App: größerer Zurück-Button, Abstand zur Statusleiste, zusätzlicher „Zurück zum Spiel“-Button unten |
 | 2026-09-28 | Versionsanzeige im ⋯-Menü (wird von `build.py` in `index.html` gepflegt) |
