@@ -167,6 +167,7 @@ Aktuell: **1.1 (versionCode 2)**. Die Version wird bei jedem Build automatisch e
 
 | Datum | Änderungen |
 |---|---|
+| 2026-09-28 | Versionsanzeige im ⋯-Menü (wird von `build.py` in `index.html` gepflegt) |
 | 2026-09-28 | Robusteres Layout: lange Namen und Inhalte ragen nicht mehr über Karten, Tabellen und den Bildschirmrand hinaus |
 | 2026-09-26 | Beendetes Turnier zum Bearbeiten öffnen (Würfe und Strafen korrigieren) und wieder abschließen |
 | 2026-09-26 | Regelwerk jederzeit als Overlay aufrufbar, das laufende Spiel bleibt unverändert |

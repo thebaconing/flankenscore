@@ -88,6 +88,7 @@
       (state ? '' +
         '<button data-action="export-players">Spielerstatistik (CSV)</button>' +
         '<button data-action="new">Neues Turnier</button>' : '') +
+      (window.FLANKEN_VERSION ? '<small class="menu-version">Version ' + window.FLANKEN_VERSION + '</small>' : '') +
       '</div></details>';
   }
 

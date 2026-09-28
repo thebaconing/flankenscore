@@ -73,6 +73,7 @@ def bump_version():
     sub_file('android/app/build.gradle', r'versionCode \d+', 'versionCode ' + str(code))
     sub_file('android/app/build.gradle', r'versionName "[\d.]+"', 'versionName "' + name + '"')
     sub_file('sw.js', r"flankenscore-v\d+", 'flankenscore-v' + str(sw))
+    sub_file('index.html', r"FLANKEN_VERSION = '[^']*'", "FLANKEN_VERSION = '" + name + ' (Build ' + str(code) + ")'")
     sub_file('package.json', r'"version": "[\d.]+"', '"version": "' + name + '.0"')
     sub_file('README.md', r'(App-Version \(`versionName`\) \| \*\*)[\d.]+', r'\g<1>' + name)
     sub_file('README.md', r'(Android `versionCode` \| \*\*)\d+', r'\g<1>' + str(code))
