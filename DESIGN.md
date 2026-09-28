@@ -567,13 +567,14 @@ Diese Farben bitte als CSS-Variablen / Tailwind-Theme übernehmen.
 
 ## 11. Version & Historie
 
-**App-Version:** 1.1 (Android `versionCode` 2)  
+**App-Version:** 1.2 (Android `versionCode` 3)  
 **Dokumentversion:** 1.1  
 **Erstellt:** 2026-09-25  
 **Status:** Umgesetzt
 
 | Datum | Änderungen |
 |---|---|
+| 2026-09-28 | **Release 1.2** (versionCode 3) mit den folgenden Änderungen |
 | 2026-09-28 | Regelwerk in der App: größerer Zurück-Button, Abstand zur Statusleiste, zusätzlicher „Zurück zum Spiel“-Button unten |
 | 2026-09-28 | Versionsanzeige im ⋯-Menü (wird von `build.py` in `index.html` gepflegt) |
 | 2026-09-28 | Robusteres Layout: lange Namen und Inhalte ragen nicht mehr über Karten, Tabellen und den Bildschirmrand hinaus |

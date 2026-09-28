@@ -14,10 +14,10 @@ Mehr zur Architektur steht in [DESIGN.md](DESIGN.md).
 
 | Feld | Wert | Datei |
 |---|---|---|
-| App-Version (`versionName`) | **1.1** | `android/app/build.gradle` |
-| Android `versionCode` | **2** | `android/app/build.gradle` |
-| npm-Version | 1.1.0 | `package.json` |
-| Service-Worker-Cache | `flankenscore-v2` | `sw.js` |
+| App-Version (`versionName`) | **1.2** | `android/app/build.gradle` |
+| Android `versionCode` | **3** | `android/app/build.gradle` |
+| npm-Version | 1.2.0 | `package.json` |
+| Service-Worker-Cache | `flankenscore-v3` | `sw.js` |
 
 
 ---
@@ -163,10 +163,11 @@ Die Historie (Tabelle unten) wird **nicht** automatisch ergänzt, dort bitte ein
 
 ## Versionshistorie
 
-Aktuell: **1.1 (versionCode 2)**. Die Version wird bei jedem Build automatisch erhöht.
+Aktuell: **1.2 (versionCode 3)**. Die Version wird bei jedem Build automatisch erhöht.
 
 | Datum | Änderungen |
 |---|---|
+| 2026-09-28 | **Release 1.2** (versionCode 3) mit den folgenden Änderungen |
 | 2026-09-28 | Regelwerk in der App: größerer Zurück-Button, Abstand zur Statusleiste, zusätzlicher „Zurück zum Spiel“-Button unten |
 | 2026-09-28 | Versionsanzeige im ⋯-Menü (wird von `build.py` in `index.html` gepflegt) |
 | 2026-09-28 | Robusteres Layout: lange Namen und Inhalte ragen nicht mehr über Karten, Tabellen und den Bildschirmrand hinaus |
