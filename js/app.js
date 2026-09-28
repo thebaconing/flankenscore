@@ -222,14 +222,14 @@
   function standingsTable(g, compact) {
     var rows = F.groupStandings(state, g);
     var t = state.tournament, perGroup = Math.floor(t.config.qualifiers / t.groups.length);
-    return '<table class="standings"><thead><tr><th>#</th><th>Team</th><th title="Spiele">Sp</th><th>S</th><th>N</th>' +
+    return '<div class="table-wrap"><table class="standings"><thead><tr><th>#</th><th>Team</th><th title="Spiele">Sp</th><th>S</th><th>N</th>' +
       (compact ? '' : '<th>Treffer</th><th>Würfe</th>') + '<th>Quote</th><th>Pkt</th></tr></thead><tbody>' +
       rows.map(function (r) {
         return '<tr class="' + (r.rank <= perGroup ? 'qualified' : '') + '"><td>' + r.rank + '</td><td>' + tname(r.teamId) +
           '</td><td>' + r.matchesPlayed + '</td><td>' + r.wins + '</td><td>' + r.losses + '</td>' +
           (compact ? '' : '<td>' + r.hitsTotal + '</td><td>' + r.throwsTotal + '</td>') +
           '<td>' + pct(r.hitQuote) + '</td><td><strong>' + r.points + '</strong></td></tr>';
-      }).join('') + '</tbody></table>';
+      }).join('') + '</tbody></table></div>';
   }
 
   function viewGroups() {
@@ -409,8 +409,8 @@
     function block(tid, hits, throws, q) {
       return '<div class="team-panel ' + (r.winnerTeamId === tid ? 'winner' : '') + '"><h3>' + tname(tid) + warnBadge(m, tid) + (r.winnerTeamId === tid ? ' 🏆' : '') + '</h3>' +
         '<div class="counters"><div><b>' + throws + '</b><span>Würfe</span></div><div><b>' + hits + '</b><span>Treffer</span></div><div><b>' + pct(q) + '</b><span>Quote</span></div></div>' +
-        '<table><thead><tr><th>Spieler</th><th>W</th><th>T</th><th>Quote</th></tr></thead><tbody>' +
-        team(tid).players.map(playerLine).join('') + '</tbody></table></div>';
+        '<div class="table-wrap"><table><thead><tr><th>Spieler</th><th>W</th><th>T</th><th>Quote</th></tr></thead><tbody>' +
+        team(tid).players.map(playerLine).join('') + '</tbody></table></div></div>';
     }
     return '<section class="card"><div class="grid2 panels">' + block(m.homeTeamId, r.homeTeamHits, r.homeTeamThrows, r.homeTeamQuote) +
       block(m.awayTeamId, r.awayTeamHits, r.awayTeamThrows, r.awayTeamQuote) + '</div>' +

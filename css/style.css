@@ -332,6 +332,35 @@ body { padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom,
 }
 @media print { .topbar, body { padding-top: 0; padding-bottom: 0; } }
 
+/* ---------- Überlauf-Schutz (lange Namen, schmale Bildschirme) ---------- */
+body { overflow-x: clip; } /* clip statt hidden: erhält position: sticky der Kopfzeile */
+main, .card, .team-panel, .team-input, .pen-team, .order-box, .pen-targets, .history-item { min-width: 0; max-width: 100%; }
+/* Flex-/Grid-Kinder dürfen schrumpfen statt den Container zu sprengen */
+.grid2 > *, .groups-grid > *, .team-inputs > *, .hero > *, .match-row > *, .series-score > *,
+.counters > *, .bteam > *, .actions > *, .tabs > *, .segmented > *, .throw-tools > *, .sides > * { min-width: 0; }
+/* Spaltenminima nie breiter als der verfügbare Platz */
+.grid2 { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
+.groups-grid { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.team-inputs { grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); }
+.match-row { grid-template-columns: minmax(0, 1fr) auto; }
+.menu > div { max-width: calc(100vw - 1.5rem); }
+/* Lange Wörter/Namen umbrechen */
+h1, h2, h3, p, li, label, legend, .brand-text, .phase, .match-row .teams, .bteam, .side, .player,
+.podium li, .series-score div, .next-label, .history-info, .penalty-list li, .mode-info { overflow-wrap: anywhere; }
+button { max-width: 100%; overflow-wrap: anywhere; }
+.bteam > :first-child { overflow: hidden; text-overflow: ellipsis; }
+.series-score { flex-wrap: wrap; }
+.series-score div { flex: 1 1 10rem; gap: .5rem; }
+.counters b { overflow: hidden; text-overflow: ellipsis; }
+img, svg, video, iframe, select, input, textarea { max-width: 100%; }
+td, th { overflow-wrap: normal; }
+td:nth-child(2) { overflow-wrap: anywhere; min-width: 5rem; }
+.table-wrap { max-width: 100%; -webkit-overflow-scrolling: touch; }
+@media (max-width: 380px) {
+  .throw-buttons { gap: .5rem; }
+  .throw-buttons button { font-size: 1.15rem; }
+}
+
 /* Regelwerk-Overlay (über der App, Spielstand bleibt erhalten) */
 .rules-overlay { position: fixed; inset: 0; z-index: 1000; background: var(--bg, #f3f5f2); }
 .rules-overlay[hidden] { display: none; }
